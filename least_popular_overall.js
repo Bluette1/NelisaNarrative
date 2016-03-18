@@ -1,5 +1,5 @@
 
-var least_popular_overall = function(arrayOfObjects){
+module.exports = function(arrayOfObjects){
 var leastPopularMap={};
 var leastPopular ="";
 var minCount =0;
@@ -47,4 +47,4 @@ console.log(leastPopularMap);
 return leastPopularMap;
 }
 
-least_popular_overall([{"oranges":1}, {"melons":1, "oranges":3}, {"kiwifruit":3 },{"melons":2, "kiwifruit":1}]);
+// least_popular_overall([{"oranges":1}, {"melons":1, "oranges":3}, {"kiwifruit":3 },{"melons":2, "kiwifruit":1}]);
