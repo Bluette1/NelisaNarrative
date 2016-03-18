@@ -1,5 +1,7 @@
-var most_popular_overall = function(arrayOfObjects){
-var mostPopular={};
+
+module.exports = function(arrayOfObjects){
+var mostPopularMap={};
+var mostPopular ="";
 var maxCount =0;
 var array =[];
 for(i=0;i < arrayOfObjects.length; i++){
@@ -9,37 +11,40 @@ for(i=0;i < arrayOfObjects.length; i++){
       array.push(key);
     }
 
-    // if(items[key] > maxCount ){
-    //   maxCount =items[key];
-    //   mostPopular[items]=items[key];
-    // }
   }
 }
 
 for(i =0; i < array.length; i++){
   var total =0;
-  for(i=0;i < arrayOfObjects.length; i++){
-    var items = arrayOfObjects[i];
+  for(j=0;j < arrayOfObjects.length; j++){
+    var items = arrayOfObjects[j];
     for(var key in items){
     if(array[i]===key){
+
+
       total += items[key];
     }
 
-      // if(items[key] > maxCount ){
-      //   maxCount =items[key];
-      //   mostPopular[items]=items[key];
-      // }
     }
-    if(total > maxCount){
-      maxCount = total;
-      mostPopular[items]=maxCount;
-    }
+
+  }
+  if(total ===maxCount){
+    mostPopular += " and "+array[i];
   }
 
+  if(total > maxCount){
+    maxCount = total;
+    mostPopular=array[i];
+  }
 }
 
-console.log(mostPopular);
-return mostPopular;
+var arrayMostPopular = mostPopular.split(" and ");
+for(i=0; i < arrayMostPopular.length; i++){
+  mostPopularMap[arrayMostPopular[i]] =maxCount;
 }
 
-most_popular_overall([{"oranges":8}, {"melons":2, "oranges":1}, {"kiwifruit":11 },{"melons":20}]);
+console.log(mostPopularMap);
+return mostPopularMap;
+}
+
+//most_popular_overall([{"oranges":1}, {"melons":11, "oranges":30}, {"kiwifruit":31 },{"melons":20}]);
