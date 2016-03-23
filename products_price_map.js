@@ -41,7 +41,7 @@ var productsList =[];
   }
 
 
-  console.log(productsMap);
+  //console.log(productsMap);
   return productsMap;
 
 }

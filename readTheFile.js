@@ -4,6 +4,6 @@ module.exports = function(pathToFile){
 var file = fs.readFileSync(pathToFile, 'utf8');
 file =file.split("\n");
 file.pop();
-console.log(file);
+//console.log(file);
 return file;
 };
