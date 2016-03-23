@@ -21,4 +21,9 @@ var mostProfitable3= most_profitable(productsPriceMap3,productsCostMap);
 var mostProfitable4= most_profitable(productsPriceMap4,productsCostMap);
 var most_profitable_overall = require('./most_profitable_overall');
 var mostProfitable =most_profitable_overall([mostProfitable1, mostProfitable2, mostProfitable3, mostProfitable4]);
-console.log(mostProfitable);
+//console.log(mostProfitable);
+
+var categories =readTheFile('/home/coder/NelisaNarrative/categories.csv');
+var products_category_map = require('./products_category_map');
+var productsCategoryMap = products_category_map(categories);
+console.log(productsCategoryMap);
