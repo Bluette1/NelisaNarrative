@@ -1,3 +1,5 @@
+//Finds the total profit per unit sold
+
 module.exports = function(productsCategoryMap, productsPriceMap, productsCostMap){
 var mostProfitableCategory ="";
 var maxProfit = 0;
@@ -17,15 +19,16 @@ for(var category in productsCategoryMap){
 
 
           if(productsCostMap[shop].hasOwnProperty(item[i])){
-            console.log("Yeah: " + shop + ": " + item[i]);
+            //console.log("Yeah: " + shop + ": " + item[i]);
 
 
             var costArray = productsCostMap[shop][item[i]].split('R');
 
+
             var characters = costArray[1].split("");
             for(j=0;j < characters.length;j++){
-              if(characters[i] === ','){
-                characters[i] = '.';
+              if(characters[j] === ','){
+                characters[j] = '.';
               }
 
             }
@@ -33,16 +36,18 @@ for(var category in productsCategoryMap){
 
 
             var cost = costArray[1];
+            //console.log(cost);
+            //console.log(cost);
 
             var profit = Number(price)-Number(cost);
             totalProfit += profit;
-            console.log(totalProfit);
+            //console.log(totalProfit);
 
 
 
         }
       }
-//
+
  }
 }
 if(totalProfit===maxProfit){
@@ -53,9 +58,14 @@ if(totalProfit > maxProfit){
   maxProfit = totalProfit;
   mostProfitableCategory = category;
 }
-console.log("finished " + category);
+//console.log("finished " + category);
 
 }
-return mostProfitableCategory + ": " + maxProfit;
+var obj ={};
+var theMostProfitableCategory =mostProfitableCategory.split(" and ");
+for(i=0;i < theMostProfitableCategory.length; i++){
+  obj[theMostProfitableCategory[i]]=maxProfit;
+}
+return obj;
 
 };

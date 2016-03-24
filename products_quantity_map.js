@@ -35,7 +35,7 @@ var productsList =[];
   productsMap[productsList[i]]=total;
 
   }
-  console.log(productsMap);
+  //console.log(productsMap);
   return productsMap;
 
 }

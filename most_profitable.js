@@ -25,7 +25,7 @@ if(productsPriceMap.hasOwnProperty(product)){
   var cost = costArray[1];
 
   var profit = Number(price)-Number(cost);
-  
+
   //console.log(profit);
   if(profit===maxProfit){
     mostProfitable += " and " + product +" from "+shop;
