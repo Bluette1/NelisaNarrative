@@ -1,54 +1,30 @@
 //Finds the total profit per unit sold
 
-module.exports = function(productsCategoryMap, productsPriceMap, productsCostMap){
+module.exports = function(productsCategoryMap, productsProfitMap){
 var mostProfitableCategory ="";
+var mostProfitableCategory1 ="";
 var maxProfit = 0;
+var maxProfit1 =0;
 for(var category in productsCategoryMap){
   var totalProfit = 0;
+  var totalProfit1 =0;
   var item = productsCategoryMap[category];
 
   for(i=0; i < item.length; i++){
-    //console.log(item[i]);
-
- if(productsPriceMap.hasOwnProperty(item[i])){
-//console.log(productsPriceMap[item[i]]);
-        var priceArray =productsPriceMap[item[i]].split('R');
-        var price =priceArray[1];
-        //console.log(price);
-        for(var shop in productsCostMap){
-
-
-          if(productsCostMap[shop].hasOwnProperty(item[i])){
-            //console.log("Yeah: " + shop + ": " + item[i]);
-
-
-            var costArray = productsCostMap[shop][item[i]].split('R');
-
-
-            var characters = costArray[1].split("");
-            for(j=0;j < characters.length;j++){
-              if(characters[j] === ','){
-                characters[j] = '.';
-              }
-
-            }
-            costArray[1]=characters.join("");
-
-
-            var cost = costArray[1];
-            //console.log(cost);
-            //console.log(cost);
-
-            var profit = Number(price)-Number(cost);
-            totalProfit += profit;
-            //console.log(totalProfit);
-
-
-
-        }
-      }
-
- }
+    var total =0;//console.log(item[i]);
+    var count =0;
+    var array =[];
+for(var shop in productsProfitMap){
+   if(productsProfitMap[shop].hasOwnProperty(item[i])){
+     count++;
+     total += productsProfitMap[shop][item[i]];
+     array.push([productsProfitMap[shop][item[i]]]);
+   }
+}
+var averageProfitPerUnit =total/count;
+totalProfit +=averageProfitPerUnit;
+var profitPerUnit = Math.max.apply(null, array);
+totalProfit1 += profitPerUnit;
 }
 if(totalProfit===maxProfit){
   mostProfitableCategory += " and " + category;
@@ -59,13 +35,28 @@ if(totalProfit > maxProfit){
   mostProfitableCategory = category;
 }
 //console.log("finished " + category);
+if(totalProfit1===maxProfit1){
+  mostProfitableCategory1 += " and " + category;
+}
 
+if(totalProfit1 > maxProfit1){
+  maxProfit1 = totalProfit1;
+  mostProfitableCategory1 = category;
+}
 }
 var obj ={};
 var theMostProfitableCategory =mostProfitableCategory.split(" and ");
 for(i=0;i < theMostProfitableCategory.length; i++){
   obj[theMostProfitableCategory[i]]=maxProfit;
 }
+var obj1 ={};
+var theMostProfitableCategory1 =mostProfitableCategory1.split(" and ");
+for(i=0;i < theMostProfitableCategory1.length; i++){
+  obj1[theMostProfitableCategory1[i]]=maxProfit1;
+}
+console.log(obj);
+console.log("If Nelisa buys from the cheapest supplier: ");
+console.log(obj1);
 return obj;
 
 };

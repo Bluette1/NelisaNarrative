@@ -3,7 +3,7 @@ var assert = require('assert');
 
 describe("most_profitable", function(){
   it("should return 'oranges'", function(){
-   var result = most_profitable({"oranges":"R19", "pears":"R17","apples":"R15"}, {"Shopright":{"oranges":"R17", "pears":"R13"}, "Checkers":{"apples":"R14", "oranges":"R12", "pears":"R16"}});
+   var result = most_profitable({"Shopright":{"oranges":2, "pears":4}, "Checkers":{"apples":1, "oranges":7, "pears":1}});
    assert.deepEqual(result, {"oranges from Checkers":7});
   });
 });
