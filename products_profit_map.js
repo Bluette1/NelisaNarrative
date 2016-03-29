@@ -31,6 +31,6 @@ module.exports = function(productsPriceMap, productsCostMap){
 }
 }
 }
-  console.log(productsProfitMap);
+  //console.log(productsProfitMap);
   return productsProfitMap;
 }

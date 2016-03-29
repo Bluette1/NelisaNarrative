@@ -22,6 +22,6 @@ var theMostProfitable =mostProfitable.split(" and ");
 for(i=0;i < theMostProfitable.length; i++){
   obj[theMostProfitable[i]]=maxProfit;
 }
-console.log(obj);
+//console.log(obj);
 return obj;
 }

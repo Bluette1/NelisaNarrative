@@ -54,9 +54,14 @@ var theMostProfitableCategory1 =mostProfitableCategory1.split(" and ");
 for(i=0;i < theMostProfitableCategory1.length; i++){
   obj1[theMostProfitableCategory1[i]]=maxProfit1;
 }
-console.log(obj);
-console.log("If Nelisa buys from the cheapest supplier: ");
-console.log(obj1);
-return obj;
+
+this.getMostProfitableCategory = function(){
+  return obj;
+}
+
+this.getMostProfitableCategory1 = function(){
+  //console.log("If Nelisa buys from the cheapest supplier: ");
+  return obj1;
+}
 
 };
