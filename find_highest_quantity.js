@@ -38,6 +38,7 @@ for(i =0; i < array.length; i++){
   }
 }
 
+//return most +": "+ max;
 var arrayMost = most.split(" and ");
 for(i=0; i < arrayMost.length; i++){
   mostMap[arrayMost[i]] =max;

@@ -38,6 +38,7 @@ for(i =0; i < array.length; i++){
   }
 }
 
+//return least + ": "+ min;
 var arrayLeast = least.split(" and ");
 for(i=0; i < arrayLeast.length; i++){
   leastMap[arrayLeast[i]] =min;
