@@ -16,7 +16,6 @@ module.exports = function(file) {
   var productsMap = {};
 
   for (i = 0; i < shopList.length; i++) {
-    var found = false;
 
     productsMap[shopList[i]] = {};
     for (j = 1; j < file.length; j++) {

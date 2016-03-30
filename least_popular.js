@@ -18,7 +18,7 @@ var theLeastPopular =leastPopular.split(" and ");
 for(i=0;i < theLeastPopular.length; i++){
   obj[theLeastPopular[i]]=minCount;
 }
-console.log(obj);
+//console.log(obj);
 return obj;
 
 }

@@ -18,7 +18,7 @@ var theMostPopular =most_popular.split(" and ");
 for(i=0;i < theMostPopular.length; i++){
   obj[theMostPopular[i]]=maxCount;
 }
-console.log(obj);
+//console.log(obj);
 return obj;
 
 }

@@ -21,6 +21,6 @@ module.exports = function(object){
     return string;
 
   }
-  console.log(recursiveToString(object));
+  //console.log(recursiveToString(object));
   return  recursiveToString(object);
 }

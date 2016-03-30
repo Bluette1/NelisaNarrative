@@ -26,6 +26,15 @@ var most_popular_overall = require('./most_popular_overall');
 var mostPopular = most_popular_overall([mostPopular1,mostPopular2,mostPopular3,mostPopular4]);
 //console.log(mostPopular);
 
+
+var least_popular = require('./least_popular');
+var leastPopular1 = least_popular(productsQuantityMap1);
+var leastPopular2 = least_popular(productsQuantityMap2);
+var leastPopular3= least_popular(productsQuantityMap3);
+var leastPopular4 = least_popular(productsQuantityMap4);
+var least_popular_overall = require('./least_popular_overall');
+var leastPopular = least_popular_overall([leastPopular1,leastPopular2,leastPopular3,leastPopular4]);
+
 var purchases = readTheFile('/home/coder/NelisaNarrative/purchases.csv');
 var productsCostMap = products_cost_map(purchases);
 var products_profit_map = require('./products_profit_map');
@@ -89,14 +98,16 @@ var leastPopularCategory=least_popular_category_overall([leastPopularCategory1,l
 //console.log(mostPopular1);
 var Handlebars = require('handlebars');
 
-var source = "{{{title}}}<br>Most Popular Product:<br>Week1: {{Week1}}<br>Week2: {{Week2}}<br>Week3: {{Week3}}<br>Week4: {{Week4}}<br>Overall: {{Overall}}";
-var template = Handlebars.compile(source);
+//var source = "{{{title}}}<br>Most Popular Product:<br>Week1: {{Week1}}<br>Week2: {{Week2}}<br>Week3: {{Week3}}<br>Week4: {{Week4}}<br>Overall: {{Overall}}";
+var source1 ="<h1>{{{title}}}<br><h2>Week1<h3><br>Most popular product:{{MostPopular1}}<br>Least popular product: {{LeastPopular1}} <br>Most popular category: {{MostPopularCategory1}} <br> Least popular category: {{LeastPopularCategory1}} <br>Most profitable product: {{MostProfitableProduct1}} <br>Most profitable category: {{MostProfitableCategory1}}<br> Most profitable category(If Nelisa buys from cheapest supplier): {{MostProfitableCateg1}}";
+var template1 = Handlebars.compile(source1);
 var objectToString = require('./objectToString');
-var context = {title: "Nelisa's weekly sales report",Week1: objectToString(mostPopular1),Week2: objectToString(mostPopular2),Week3: objectToString(mostPopular3),Week4: objectToString(mostPopular4),Overall: objectToString(mostPopular) };
-var html    = template(context);
+//var context = {title: "Nelisa's weekly sales report",Week1: objectToString(mostPopular1),Week2: objectToString(mostPopular2),Week3: objectToString(mostPopular3),Week4: objectToString(mostPopular4),Overall: objectToString(mostPopular) };
+var context1 ={title:  "Nelisa's weekly sales report", MostPopular1:objectToString(mostPopular1), LeastPopular1: objectToString(leastPopular1), MostPopularCategory1:objectToString(mostPopularCategory1), LeastPopularCategory1:objectToString(leastPopularCategory1), MostProfitableProduct1: objectToString(mostProfitable1), MostProfitableCategory1:objectToString(mostProfitableCategory1), MostProfitableCateg1:objectToString(mostProfitableCateg1) }
+var html1    = template1(context1);
 //console.log(html);
 var fs = require('fs');
-fs.writeFile('display.html', html, function(err){
+fs.writeFile('week1.html', html1, function(err){
   if (err) {
     throw err;
   }
