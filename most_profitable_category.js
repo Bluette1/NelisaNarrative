@@ -45,7 +45,7 @@ if(totalProfit1 > maxProfit1){
 }
 }
 var obj ={};
-console.log(mostProfitableCategory);
+//console.log(mostProfitableCategory);
 var theMostProfitableCategory =mostProfitableCategory.split(" and ");
 for(i=0;i < theMostProfitableCategory.length; i++){
   obj[theMostProfitableCategory[i]]=maxProfit;

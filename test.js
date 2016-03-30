@@ -95,19 +95,55 @@ var least_popular_category_overall = require('./least_popular_category_overall')
 var leastPopularCategory=least_popular_category_overall([leastPopularCategory1,leastPopularCategory2,leastPopularCategory3,leastPopularCategory4]);
 //console.log(leastPopularCategory);
 
-//console.log(mostPopular1);
+
 var Handlebars = require('handlebars');
 
-//var source = "{{{title}}}<br>Most Popular Product:<br>Week1: {{Week1}}<br>Week2: {{Week2}}<br>Week3: {{Week3}}<br>Week4: {{Week4}}<br>Overall: {{Overall}}";
-var source1 ="<h1>{{{title}}}<br><h2>Week1<h3><br>Most popular product:{{MostPopular1}}<br>Least popular product: {{LeastPopular1}} <br>Most popular category: {{MostPopularCategory1}} <br> Least popular category: {{LeastPopularCategory1}} <br>Most profitable product: {{MostProfitableProduct1}} <br>Most profitable category: {{MostProfitableCategory1}}<br> Most profitable category(If Nelisa buys from cheapest supplier): {{MostProfitableCateg1}}";
-var template1 = Handlebars.compile(source1);
+var source ="<h1>Nelisa's Weekly Sales Report<br><h2>{{Week}}<h3><br>Most popular product:{{MostPopular}}<br>Least popular product: {{LeastPopular}} <br>Most popular category: {{MostPopularCategory}} <br> Least popular category: {{LeastPopularCategory}} <br>Most profitable product: {{MostProfitableProduct}} <br>Most profitable category: {{MostProfitableCategory}}<br> Most profitable category(If Nelisa buys from cheapest supplier): {{MostProfitableCateg}}";
+var template = Handlebars.compile(source);
 var objectToString = require('./objectToString');
-//var context = {title: "Nelisa's weekly sales report",Week1: objectToString(mostPopular1),Week2: objectToString(mostPopular2),Week3: objectToString(mostPopular3),Week4: objectToString(mostPopular4),Overall: objectToString(mostPopular) };
-var context1 ={title:  "Nelisa's weekly sales report", MostPopular1:objectToString(mostPopular1), LeastPopular1: objectToString(leastPopular1), MostPopularCategory1:objectToString(mostPopularCategory1), LeastPopularCategory1:objectToString(leastPopularCategory1), MostProfitableProduct1: objectToString(mostProfitable1), MostProfitableCategory1:objectToString(mostProfitableCategory1), MostProfitableCateg1:objectToString(mostProfitableCateg1) }
-var html1    = template1(context1);
-//console.log(html);
+
+//Write sales report for week 1
+var context1 ={Week: "Week 1", MostPopular:objectToString(mostPopular1), LeastPopular: objectToString(leastPopular1), MostPopularCategory:objectToString(mostPopularCategory1), LeastPopularCategory:objectToString(leastPopularCategory1), MostProfitableProduct: objectToString(mostProfitable1), MostProfitableCategory:objectToString(mostProfitableCategory1), MostProfitableCateg:objectToString(mostProfitableCateg1) }
+var html1    = template(context1);
+
 var fs = require('fs');
 fs.writeFile('week1.html', html1, function(err){
+  if (err) {
+    throw err;
+  }
+  console.log('It\'s saved!');
+});
+
+//Write sales report for week 2
+var context2 ={Week: "Week 2", MostPopular:objectToString(mostPopular2), LeastPopular: objectToString(leastPopular2), MostPopularCategory:objectToString(mostPopularCategory2), LeastPopularCategory:objectToString(leastPopularCategory2), MostProfitableProduct: objectToString(mostProfitable2), MostProfitableCategory:objectToString(mostProfitableCategory2), MostProfitableCateg: objectToString(mostProfitableCateg2) }
+var html2    = template(context2);
+
+
+fs.writeFile('week2.html', html2, function(err){
+  if (err) {
+    throw err;
+  }
+  console.log('It\'s saved!');
+});
+
+//Write sales report for week 3
+var context3 ={Week: "Week 3", MostPopular:objectToString(mostPopular3), LeastPopular: objectToString(leastPopular3), MostPopularCategory:objectToString(mostPopularCategory3), LeastPopularCategory:objectToString(leastPopularCategory3), MostProfitableProduct: objectToString(mostProfitable3), MostProfitableCategory:objectToString(mostProfitableCategory3), MostProfitableCateg: objectToString(mostProfitableCateg3) }
+var html3    = template(context3);
+
+
+fs.writeFile('week3.html', html3, function(err){
+  if (err) {
+    throw err;
+  }
+  console.log('It\'s saved!');
+});
+
+//Write sales report for week 4
+var context4 ={Week: "Week 4", MostPopular:objectToString(mostPopular4), LeastPopular: objectToString(leastPopular4), MostPopularCategory:objectToString(mostPopularCategory4), LeastPopularCategory:objectToString(leastPopularCategory4), MostProfitableProduct: objectToString(mostProfitable4), MostProfitableCategory:objectToString(mostProfitableCategory4), MostProfitableCateg: objectToString(mostProfitableCateg4) }
+var html4    = template(context4);
+
+
+fs.writeFile('week4.html', html4, function(err){
   if (err) {
     throw err;
   }
