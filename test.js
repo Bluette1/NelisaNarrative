@@ -149,3 +149,15 @@ fs.writeFile('week4.html', html4, function(err){
   }
   console.log('It\'s saved!');
 });
+
+//Write overall sales report
+var context5 ={Week: "Overall: Report for the month", MostPopular:objectToString(mostPopular), LeastPopular: objectToString(leastPopular), MostPopularCategory:objectToString(mostPopularCategory), LeastPopularCategory:objectToString(leastPopularCategory), MostProfitableProduct: objectToString(mostProfitable), MostProfitableCategory:objectToString(mostProfitableCategory), MostProfitableCateg: objectToString(mostProfitableCateg) }
+var html5   = template(context5);
+
+
+fs.writeFile('month.html', html5, function(err){
+  if (err) {
+    throw err;
+  }
+  console.log('It\'s saved!');
+});
