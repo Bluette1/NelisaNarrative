@@ -1,25 +1,25 @@
-module.exports = function(object){
-var maxCount =0;
-var most_popular = "";
-for(var item in object){
-if(object[item]===maxCount){
-  most_popular += " and "+item;
-}
-if(object[item] > maxCount){
-  maxCount= object[item];
-  most_popular=item;
-}
+module.exports = function(object) {
+  var maxCount = 0;
+  var most_popular = "";
+  for (var item in object) {
+    if (object[item] === maxCount) {
+      most_popular += " and " + item;
+    }
+    if (object[item] > maxCount) {
+      maxCount = object[item];
+      most_popular = item;
+    }
 
-}
+  }
 
 
-var obj ={};
-var theMostPopular =most_popular.split(" and ");
-for(i=0;i < theMostPopular.length; i++){
-  obj[theMostPopular[i]]=maxCount;
-}
-//console.log(obj);
-return obj;
+  var obj = {};
+  var theMostPopular = most_popular.split(" and ");
+  for (i = 0; i < theMostPopular.length; i++) {
+    obj[theMostPopular[i]] = maxCount;
+  }
+  //console.log(obj);
+  return obj;
 
 }
 

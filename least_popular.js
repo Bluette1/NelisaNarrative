@@ -1,25 +1,25 @@
-module.exports = function(object){
-var minCount =0;
-var leastPopular = "";
-for(var item in object){
-if(object[item]===minCount){
-  leastPopular += " and "+item;
-}
-if((object[item] < minCount) || (minCount===0)){
-  minCount= object[item];
-  leastPopular=item;
-}
+module.exports = function(object) {
+  var minCount = 0;
+  var leastPopular = "";
+  for (var item in object) {
+    if (object[item] === minCount) {
+      leastPopular += " and " + item;
+    }
+    if ((object[item] < minCount) || (minCount === 0)) {
+      minCount = object[item];
+      leastPopular = item;
+    }
 
-}
+  }
 
 
-var obj ={};
-var theLeastPopular =leastPopular.split(" and ");
-for(i=0;i < theLeastPopular.length; i++){
-  obj[theLeastPopular[i]]=minCount;
-}
-//console.log(obj);
-return obj;
+  var obj = {};
+  var theLeastPopular = leastPopular.split(" and ");
+  for (i = 0; i < theLeastPopular.length; i++) {
+    obj[theLeastPopular[i]] = minCount;
+  }
+  //console.log(obj);
+  return obj;
 
 }
 

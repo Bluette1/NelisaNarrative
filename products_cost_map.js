@@ -5,9 +5,9 @@ module.exports = function(file) {
     var factors = file[i].split(';');
 
 
-        if(shopList.indexOf(factors[0]) < 0){
-          shopList.push(factors[0]);
-        }
+    if (shopList.indexOf(factors[0]) < 0) {
+      shopList.push(factors[0]);
+    }
 
 
   }
