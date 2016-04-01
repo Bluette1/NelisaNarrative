@@ -1,224 +1,331 @@
-module.exports = function(){
-  var readTheFile = require('./readTheFile');
-  var week1 = readTheFile('/home/coder/NelisaNarrative/week1.csv');
-  var week2 = readTheFile('/home/coder/NelisaNarrative/week2.csv');
-  var week3 = readTheFile('/home/coder/NelisaNarrative/week3.csv');
-  var week4 = readTheFile('/home/coder/NelisaNarrative/week4.csv');
-  var purchases = readTheFile('/home/coder/NelisaNarrative/purchases.csv');
-  var categories =readTheFile('/home/coder/NelisaNarrative/categories.csv');
+module.exports = function() {
 
-  var products_price_map = require('./products_price_map');
-  var products_cost_map = require('./products_cost_map');
-  var productsPriceMap1 = products_price_map(week1);
-  var productsPriceMap2 = products_price_map(week2);
-  var productsPriceMap3 = products_price_map(week3);
-  var productsPriceMap4 = products_price_map(week4);
+  var getFile = function(name) {
+    var readTheFile = require('./readTheFile');
+    switch (name) {
+      case "week1":
+        return readTheFile('/home/coder/NelisaNarrative/week1.csv');
+        break;
+      case "week2":
+        return readTheFile('/home/coder/NelisaNarrative/week2.csv');
+        break;
+      case "week3":
+        return readTheFile('/home/coder/NelisaNarrative/week3.csv');
+        break;
+      case "week4":
+        return readTheFile('/home/coder/NelisaNarrative/week4.csv');
+        break;
+      case "purchases":
+        return readTheFile('/home/coder/NelisaNarrative/purchases.csv');
+        break;
+      case "categories":
+        return readTheFile('/home/coder/NelisaNarrative/categories.csv');
+        break;
+      default:
+        break;
 
-  var products_quantity_map = require('./products_quantity_map');
-  var productsQuantityMap1 = products_quantity_map(week1);
-  var productsQuantityMap2 = products_quantity_map(week2);
-  var productsQuantityMap3 = products_quantity_map(week3);
-  var productsQuantityMap4 = products_quantity_map(week4);
+    }
+  }
+
+  var getProductsPriceMap = function(n) {
+    var products_price_map = require('./products_price_map');
+    var products_profit_map = require('./products_profit_map');
+    switch (n) {
+      case 1:
+        return products_price_map(getFile("week1"));
+        break;
+      case 2:
+        return products_price_map(getFile("week2"));
+        break;
+      case 3:
+        return products_price_map(getFile("week3"));
+        break;
+      case 4:
+        return products_price_map(getFile("week4"));
+        break;
+      default:
+        break;
+    }
+  }
+
+  //var productsPriceMap4 = products_price_map(week4);
+
+  var getProductsQuantityMap = function(n) {
+    var products_quantity_map = require('./products_quantity_map');
+    switch (n) {
+      case 1:
+        return products_quantity_map(getFile("week1"));
+        break;
+      case 2:
+        return products_quantity_map(getFile("week2"));
+        break;
+      case 3:
+        return products_quantity_map(getFile("week3"));
+        break;
+      case 4:
+        return products_quantity_map(getFile("week4"));
+        break;
+      default:
+        break;
+    }
+  }
+
+  var getProductsProfitMap = function(n) {
+    var products_cost_map = require('./products_cost_map');
+    var productsCostMap = products_cost_map(getFile("purchases"));
+    var products_profit_map = require('./products_profit_map');
+    switch (n) {
+      case 1:
+        return products_profit_map(getProductsPriceMap(1), productsCostMap);
+        break;
+      case 2:
+        return products_profit_map(getProductsPriceMap(2), productsCostMap);
+        break;
+      case 3:
+        return products_profit_map(getProductsPriceMap(3), productsCostMap);
+        break;
+      case 4:
+        return products_profit_map(getProductsPriceMap(4), productsCostMap);
+        break;
+      default:
+        break;
+
+    }
+
+  }
 
 
-  var productsCostMap = products_cost_map(purchases);
-  var products_profit_map = require('./products_profit_map');
-  var productsProfitMap1 = products_profit_map(productsPriceMap1, productsCostMap);
-  var productsProfitMap2 = products_profit_map(productsPriceMap2, productsCostMap);
-  var productsProfitMap3 = products_profit_map(productsPriceMap3, productsCostMap);
-  var productsProfitMap4 = products_profit_map(productsPriceMap4, productsCostMap);
-
-
-  var products_category_map = require('./products_category_map');
-  var productsCategoryMap = products_category_map(categories);
-
-  this.getMostPopular = function(n){
+  this.getMostPopular = function(n) {
     var most_popular = require('./most_popular');
-    var mostPopular1 = most_popular(productsQuantityMap1);
-    var mostPopular2 = most_popular(productsQuantityMap2);
-    var mostPopular3= most_popular(productsQuantityMap3);
-    var mostPopular4 = most_popular(productsQuantityMap4);
-    var most_popular_overall = require('./most_popular_overall');
-    var mostPopular = most_popular_overall([mostPopular1,mostPopular2,mostPopular3,mostPopular4]);
 
     switch (n) {
-      case 1: return mostPopular1 ;
+      case 1:
+        return most_popular(getProductsQuantityMap(1));
+
         break;
-      case 2: return mostPopular2;
+      case 2:
+        return most_popular(getProductsQuantityMap(2));
+
         break;
-      case 3: return mostPopular3;
-          break;
-      case 4: return mostPopular4;
-            break;
-      case 5: return mostPopular;
-            break;
+      case 3:
+        return most_popular(getProductsQuantityMap(3));
+
+        break;
+      case 4:
+        return most_popular(getProductsQuantityMap(4));
+
+        break;
+      case 5:
+        var most_popular_overall = require('./most_popular_overall');
+        return most_popular_overall([most_popular(getProductsQuantityMap(1)), most_popular(getProductsQuantityMap(2)), most_popular(getProductsQuantityMap(3)), most_popular(getProductsQuantityMap(4))]);
+        break;
       default:
-      break;
+        break;
+    }
+
+  }
+
+  this.getLeastPopular = function(n) {
+    var least_popular = require('./least_popular');
+
+    switch (n) {
+      case 1:
+        return least_popular(getProductsQuantityMap(1));
+
+        break;
+      case 2:
+        return least_popular(getProductsQuantityMap(2));
+
+        break;
+      case 3:
+        return least_popular(getProductsQuantityMap(3));
+
+        break;
+      case 4:
+        return least_popular(getProductsQuantityMap(4));
+
+        break;
+      case 5:
+        var least_popular_overall = require('./least_popular_overall');
+        return least_popular_overall([least_popular(getProductsQuantityMap(1)), least_popular(getProductsQuantityMap(2)), least_popular(getProductsQuantityMap(3)), least_popular(getProductsQuantityMap(4))]);
+        break;
+      default:
+        break;
     }
 
   }
 
 
-this.getLeastPopular = function(n){
-  var least_popular = require('./least_popular');
-  var leastPopular1 = least_popular(productsQuantityMap1);
-  var leastPopular2 = least_popular(productsQuantityMap2);
-  var leastPopular3= least_popular(productsQuantityMap3);
-  var leastPopular4 = least_popular(productsQuantityMap4);
-  var least_popular_overall = require('./least_popular_overall');
-  var leastPopular = least_popular_overall([leastPopular1,leastPopular2,leastPopular3,leastPopular4]);
-  switch (n) {
-    case 1: return leastPopular1 ;
-      break;
-    case 2: return leastPopular2;
-      break;
-    case 3: return leastPopular3;
-        break;
-    case 4: return leastPopular4;
-          break;
-    case 5: return leastPopular;
-          break;
-    default:
-    break;
+  this.getMostProfitable = function(n) {
+    var most_profitable = require('./most_profitable');
 
-  }
-}
-
-this.getMostProfitable = function(n){
-  var most_profitable = require('./most_profitable');
-  var mostProfitable1= most_profitable(productsProfitMap1);
-  var mostProfitable2= most_profitable(productsProfitMap2);
-  var mostProfitable3= most_profitable(productsProfitMap3);
-  var mostProfitable4= most_profitable(productsProfitMap4);
-  var most_profitable_overall = require('./most_profitable_overall');
-  var mostProfitable =most_profitable_overall([mostProfitable1, mostProfitable2, mostProfitable3, mostProfitable4]);
-  switch (n) {
-    case 1: return mostProfitable1 ;
-      break;
-    case 2: return mostProfitable2;
-      break;
-    case 3: return mostProfitable3;
-        break;
-    case 4: return mostProfitable4;
-          break;
-    case 5: return mostProfitable;
-          break;
-    default:
-    break;
-
-  }
-}
-
-
-this.getMostProfitableCategory = function(m,n){
-  var most_profitable_category = require('./most_profitable_category');
-  var object1= new most_profitable_category(productsCategoryMap,productsProfitMap1);
-  var mostProfitableCategory1 = object1.getMostProfitableCategory();
-  var object2= new most_profitable_category(productsCategoryMap,productsProfitMap2);
-  var mostProfitableCategory2 = object2.getMostProfitableCategory();
-  var object3= new most_profitable_category(productsCategoryMap,productsProfitMap3);
-  var mostProfitableCategory3 = object3.getMostProfitableCategory();
-  var object4= new most_profitable_category(productsCategoryMap,productsProfitMap4);
-  var mostProfitableCategory4 = object4.getMostProfitableCategory();
-  var most_profitable_category_overall = require('./most_profitable_category_overall');
-  var mostProfitableCategory=most_profitable_category_overall([mostProfitableCategory1,mostProfitableCategory2,mostProfitableCategory3,mostProfitableCategory4]);
-
-  var mostProfitableCateg1 = object1.getMostProfitableCategory1();
-  var mostProfitableCateg2 = object2.getMostProfitableCategory1();
-  var mostProfitableCateg3 = object3.getMostProfitableCategory1();
-  var mostProfitableCateg4 = object4.getMostProfitableCategory1();
-  var mostProfitableCateg=most_profitable_category_overall([mostProfitableCateg1,mostProfitableCateg2,mostProfitableCateg3,mostProfitableCateg4]);
-
-  switch (m) {
-    case 1:
     switch (n) {
-      case 1: return mostProfitableCategory1 ;
-        break;
-      case 2: return mostProfitableCategory2;
-        break;
-      case 3: return mostProfitableCategory3;
-          break;
-      case 4: return mostProfitableCategory4;
-            break;
-      case 5: return mostProfitableCategory;
-            break;
+      case 1:
+        return most_profitable(getProductsProfitMap(1));
 
+        break;
+      case 2:
+        return most_profitable(getProductsProfitMap(2));
+
+        break;
+      case 3:
+        return most_profitable(getProductsProfitMap(3));
+
+        break;
+      case 4:
+        return most_profitable(getProductsProfitMap(4));
+
+        break;
+      case 5:
+        var most_profitable_overall = require('./most_profitable_overall');
+        return most_profitable_overall([most_profitable(getProductsProfitMap(1)), most_profitable(getProductsProfitMap(2)), most_profitable(getProductsProfitMap(3)), most_profitable(getProductsProfitMap(4))]);
+        break;
       default:
-      break;
-
+        break;
     }
-      break;
+
+  }
+
+
+  var getProductsCategoryMap = function() {
+    var products_category_map = require('./products_category_map');
+    return products_category_map(getFile("categories"));
+  }
+
+  this.getMostProfitableCategory = function(m, n) {
+
+    var most_profitable_category = require('./most_profitable_category');
+    var object1 = new most_profitable_category(getProductsCategoryMap(), getProductsProfitMap(1));
+    var object2 = new most_profitable_category(getProductsCategoryMap(), getProductsProfitMap(2));
+    var object3 = new most_profitable_category(getProductsCategoryMap(), getProductsProfitMap(3));
+    var object4 = new most_profitable_category(getProductsCategoryMap(), getProductsProfitMap(4));
+    var most_profitable_category_overall = require('./most_profitable_category_overall');
+
+
+    switch (m) {
+      case 1:
+        switch (n) {
+          case 1:
+            return object1.getMostProfitableCategory();
+
+            break;
+          case 2:
+            return object2.getMostProfitableCategory();
+
+            break;
+          case 3:
+            return object3.getMostProfitableCategory();
+
+            break;
+          case 4:
+            return object4.getMostProfitableCategory();
+
+            break;
+          case 5:
+            return most_profitable_category_overall([object1.getMostProfitableCategory(), object2.getMostProfitableCategory(), object3.getMostProfitableCategory(), object4.getMostProfitableCategory()]);
+
+            break;
+
+          default:
+            break;
+
+        }
+        break;
 
       case 2:
-      switch (n) {
-        case 1: return mostProfitableCateg1 ;
-          break;
-        case 2: return mostProfitableCateg2;
-          break;
-        case 3: return mostProfitableCateg3;
-            break;
-        case 4: return mostProfitableCateg4;
-              break;
-        case 5: return mostProfitableCateg;
-              break;
-        default:
-        break;
-      }
-        break;
-    default:
-    break;
-  }
+        switch (n) {
+          case 1:
+            return object1.getMostProfitableCategory1();
 
-
-  }
-
-  this.getMostPopularCategory = function(n){
-    var most_popular_category = require('./most_popular_category');
-    var mostPopularCategory1= most_popular_category(productsCategoryMap,productsQuantityMap1);
-    var mostPopularCategory2= most_popular_category(productsCategoryMap,productsQuantityMap2);
-    var mostPopularCategory3= most_popular_category(productsCategoryMap,productsQuantityMap3);
-    var mostPopularCategory4= most_popular_category(productsCategoryMap,productsQuantityMap4);
-    var most_popular_category_overall = require('./most_popular_category_overall');
-    var mostPopularCategory=most_popular_category_overall([mostPopularCategory1,mostPopularCategory2,mostPopularCategory3,mostPopularCategory4]);
-    switch (n) {
-      case 1: return mostPopularCategory1 ;
-        break;
-      case 2: return mostPopularCategory2;
-        break;
-      case 3: return mostPopularCategory3;
-          break;
-      case 4: return mostPopularCategory4;
             break;
-      case 5: return mostPopularCategory;
+          case 2:
+            return object2.getMostProfitableCategory1();
+
             break;
+          case 3:
+            return object3.getMostProfitableCategory1();
+
+            break;
+          case 4:
+            return object4.getMostProfitableCategory1();
+
+            break;
+          case 5:
+            return most_profitable_category_overall([object1.getMostProfitableCategory1(), object2.getMostProfitableCategory1(), object3.getMostProfitableCategory1(), object4.getMostProfitableCategory1()]);
+
+            break;
+
+          default:
+            break;
+
+        }
+        break;
       default:
-      break;
+        break;
+    }
+
+
+  }
+
+  this.getMostPopularCategory = function(n) {
+    var most_popular_category = require('./most_popular_category');
+
+    switch (n) {
+      case 1:
+        return most_popular_category(getProductsCategoryMap(), getProductsQuantityMap(1));
+
+        break;
+      case 2:
+        return most_popular_category(getProductsCategoryMap(), getProductsQuantityMap(2));
+
+        break;
+      case 3:
+        return most_popular_category(getProductsCategoryMap(), getProductsQuantityMap(3));
+
+        break;
+      case 4:
+        return most_popular_category(getProductsCategoryMap(), getProductsQuantityMap(4));
+
+        break;
+      case 5:
+        var most_popular_category_overall = require('./most_popular_category_overall');
+        return most_popular_category_overall([most_popular_category(getProductsCategoryMap(), getProductsQuantityMap(1)), most_popular_category(getProductsCategoryMap(), getProductsQuantityMap(2)), most_popular_category(getProductsCategoryMap(), getProductsQuantityMap(3)), most_popular_category(getProductsCategoryMap(), getProductsQuantityMap(4))]);
+
+        break;
+      default:
+        break;
 
     }
   }
 
-this.getLeastPopularCategory = function(n){
-  var least_popular_category = require('./least_popular_category');
-  var leastPopularCategory1= least_popular_category(productsCategoryMap,productsQuantityMap1);
-  var leastPopularCategory2= least_popular_category(productsCategoryMap,productsQuantityMap2);
-  var leastPopularCategory3= least_popular_category(productsCategoryMap,productsQuantityMap3);
-  var leastPopularCategory4= least_popular_category(productsCategoryMap,productsQuantityMap4);
-  var least_popular_category_overall = require('./least_popular_category_overall');
-  var leastPopularCategory=least_popular_category_overall([leastPopularCategory1,leastPopularCategory2,leastPopularCategory3,leastPopularCategory4]);
-  switch (n) {
-    case 1: return leastPopularCategory1 ;
-      break;
-    case 2: return leastPopularCategory2;
-      break;
-    case 3: return leastPopularCategory3;
-        break;
-    case 4: return leastPopularCategory4;
-          break;
-    case 5: return leastPopularCategory;
-          break;
-    default:
-    break;
-  }
-}
+  this.getLeastPopularCategory = function(n) {
+    var least_popular_category = require('./least_popular_category');
 
+    switch (n) {
+      case 1:
+        return least_popular_category(getProductsCategoryMap(), getProductsQuantityMap(1));
+
+        break;
+      case 2:
+        return least_popular_category(getProductsCategoryMap(), getProductsQuantityMap(2));
+
+        break;
+      case 3:
+        return least_popular_category(getProductsCategoryMap(), getProductsQuantityMap(3));
+
+        break;
+      case 4:
+        return least_popular_category(getProductsCategoryMap(), getProductsQuantityMap(4));
+
+        break;
+      case 5:
+        var least_popular_category_overall = require('./least_popular_category_overall');
+        return least_popular_category_overall([least_popular_category(getProductsCategoryMap(), getProductsQuantityMap(1)), least_popular_category(getProductsCategoryMap(), getProductsQuantityMap(2)), least_popular_category(getProductsCategoryMap(), getProductsQuantityMap(3)), least_popular_category(getProductsCategoryMap(), getProductsQuantityMap(4))]);
+
+        break;
+      default:
+        break;
+
+    }
+  }
 }
