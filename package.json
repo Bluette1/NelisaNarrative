@@ -1,0 +1,24 @@
+{
+  "name": "NelisaNarrative",
+  "version": "0.0.0",
+  "description": "",
+  "main": "HTML.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bluette1/NelisaNarrative"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Bluette1/NelisaNarrative/issues"
+  },
+  "dependencies": {
+    "chalk": "~1.1.3"
+  }
+}
