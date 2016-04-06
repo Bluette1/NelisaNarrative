@@ -7,9 +7,17 @@ module.exports = function(object) {
   var recursiveToString = function(obj) {
 
       var string = "";
+      var count =0;
       for (var key in obj) {
         if (typeof obj[key] !== 'object') {
-          string += key + ": " + obj[key] + " ";
+          count++;
+
+          if(count > 1){
+            string += "and " + key +" ";
+          }
+          else{
+            string += key + " ";
+          }
         } else {
           string += key + ":{" + recursiveToString(obj[key]) + "} ";
 
@@ -17,9 +25,12 @@ module.exports = function(object) {
 
 
       }
-      return string;
+
+      return string.trim()+".";
 
     }
+
+
     //console.log(recursiveToString(object));
   return recursiveToString(object);
 }
