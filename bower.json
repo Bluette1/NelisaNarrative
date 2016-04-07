@@ -1,0 +1,20 @@
+{
+  "name": "NelisaNarrative",
+  "description": "",
+  "main": "HTML.js",
+  "authors": [
+    "Bluette1 <marylene.sawyer@gmail.com>"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/Bluette1/NelisaNarrative",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
+}
