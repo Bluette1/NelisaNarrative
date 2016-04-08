@@ -5,17 +5,43 @@
   <title></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./public/css/bootstrap.min.css">
-  <script src="./public/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="public/css/bootstrap.min.css">
+  <script src="public/js/bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 
 <body>
   <div class="container">
+    <div style="display: inline-flex; padding-top:25px; padding-bottom:25px;">
+      <img src="public/img/shoppingcart.png" class="img-thumbnail"  alt="Cinque Terre" width="40px" height="40px">
+      <div style="font-size:14px;padding-top:7px;padding-left:5px; padding-right:300px"><span style="color:#999999">Nelisa's</span><span style="font-weight:bold">Spaza</span></div>
+      <ul class="nav nav-pills">
+
+        <li role="presentation" class="active"><a href="index.html">Home</a></li>
+        <li role="presentation"><a href="about.html">About us</a></li>
+
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        Reports <span class="caret"></span>
+      </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="week1.html">Week 1</a></li>
+            <li><a href="week2.html">Week 2</a></li>
+            <li><a href="week3.html">Week 3</a></li>
+            <li><a href="week4.html">Week 4</a></li>
+
+            <li role="separator" class="divider"></li>
+            <li><a href="month.html">Month</a></li>
+          </ul>
+
+        </li>
+
+      </ul>
+
+    </div>
     <div class="jumbotron">
-      <div style="display: inline-flex">
-        <img src="nelisa.jpeg" class="img-thumbnail" style="margin-left: 40px" alt="Cinque Terre" width="80px" height="60px">
+
         <h1>Nelisa's Weekly Sales Report </h1 >
-      </div>
+
     </div>
     <div class="page-header">
       <h1>Overall: Report for the month</h1>
@@ -31,15 +57,7 @@
       </ul>
       <div style=" margin-left:335px; padding-top:130px;">
 
-    <!-- <a class="btn btn-default" href="index.html" role="button"><b>Home</b></a> -->
-     <div class="btn-group" role="group" aria-label="...">
-      <a class="btn btn-default" href="index.html" role="button"><b>Home</b></a>
-      <a class="btn btn-default" href="week1.html" role="button"><b>Week 1</b></a>
-      <a class="btn btn-default" href="week2.html" role="button"><b>Week 2</b></a>
-      <a class="btn btn-default" href="week3.html" role="button"><b>Week 3</b></a>
-      <a class="btn btn-default" href="week4.html" role="button"><b>Week 4</b></a>
-      <a class="btn btn-default" href="month.html" role="button"><b>Month</b></a>
-    </div>
+
 
       </div>
 
@@ -48,5 +66,5 @@
     </div>
 
 </body>
-
+<script src="public/js/bootstrap.min.js"></script>
 </html>

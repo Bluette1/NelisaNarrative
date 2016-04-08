@@ -66,7 +66,9 @@ app.get('/sales/:week_name', function(req, res) {
 app.get('/', function(req, res) {
   res.render("home");
 });
-
+app.get('/about', function(req, res) {
+  res.render("nelisa");
+});
 app.listen(3001, function() {
   console.log('My app is listening on port 3001!');
 });
