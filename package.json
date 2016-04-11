@@ -1,24 +1,14 @@
 {
-  "name": "NelisaNarrative",
+  "name": "myapp",
   "version": "0.0.0",
   "description": "",
-  "main": "HTML.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Bluette1/NelisaNarrative"
-  },
-  "author": "",
+  "author": "bluette",
   "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/Bluette1/NelisaNarrative/issues"
-  },
   "dependencies": {
-    "chalk": "~1.1.3"
+    "express": "~4.13.4"
   }
 }
