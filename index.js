@@ -5,10 +5,10 @@ app.set('port', (process.env.PORT || 3001));
 app.use(express.static('./public'));
 var exphbs = require('express-handlebars');
 app.set('views', './views');
-app.engine('handlebars', exphbs({
+app.engine('myhandlebars', exphbs({
   defaultLayout: 'main'
 }));
-app.set('view engine', 'handlebars');
+app.set('view engine', 'myhandlebars');
 
 var getContext = function(string, object1, object2, object3, object4, object5, object6, object7) {
   var objectToString = require('./objectToString');
@@ -42,6 +42,7 @@ var getContext = function(string, object1, object2, object3, object4, object5, o
 
   return context;
 }
+
 app.get('/sales/:week_name', function(req, res) {
   var Records = require('./records');
   var records = new Records();
