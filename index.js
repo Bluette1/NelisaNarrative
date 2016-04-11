@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+app.set('port', (process.env.PORT || 3001));
 
 app.use(express.static('./public'));
 var exphbs = require('express-handlebars');
@@ -69,6 +70,10 @@ app.get('/', function(req, res) {
 app.get('/about', function(req, res) {
   res.render("nelisa");
 });
-app.listen(3001, function() {
-  console.log('My app is listening on port 3001!');
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
+// app.listen(3001, function() {
+//   console.log('My app is listening on port 3001!');
+// });
