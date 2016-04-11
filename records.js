@@ -4,22 +4,22 @@ module.exports = function() {
     var readTheFile = require('./readTheFile');
     switch (name) {
       case "week1":
-        return readTheFile('/home/coder/NelisaNarrative/week1.csv');
+        return readTheFile('./week1.csv');
         break;
       case "week2":
-        return readTheFile('/home/coder/NelisaNarrative/week2.csv');
+        return readTheFile('./week2.csv');
         break;
       case "week3":
-        return readTheFile('/home/coder/NelisaNarrative/week3.csv');
+        return readTheFile('./week3.csv');
         break;
       case "week4":
-        return readTheFile('/home/coder/NelisaNarrative/week4.csv');
+        return readTheFile('./week4.csv');
         break;
       case "purchases":
-        return readTheFile('/home/coder/NelisaNarrative/purchases.csv');
+        return readTheFile('./purchases.csv');
         break;
       case "categories":
-        return readTheFile('/home/coder/NelisaNarrative/categories.csv');
+        return readTheFile('./categories.csv');
         break;
       default:
         break;
