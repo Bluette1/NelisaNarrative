@@ -2,7 +2,7 @@ module.exports = function(file) {
   var CategoryList = [];
   var productsCategoryMap = {};
 
-  for (i = 0; i < file.length; i++) {
+  for (i = 1; i < file.length; i++) {
     var factors = file[i].split(",");
 
 
@@ -19,5 +19,6 @@ module.exports = function(file) {
     }
 
   }
+  console.log(productsCategoryMap);
   return productsCategoryMap;
 }

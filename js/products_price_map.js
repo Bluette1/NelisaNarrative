@@ -41,7 +41,7 @@ module.exports = function(file) {
   }
 
 
-  //console.log(productsMap);
+console.log(productsMap);
   return productsMap;
 
 }
