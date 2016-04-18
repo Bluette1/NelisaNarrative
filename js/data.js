@@ -45,7 +45,7 @@ for (var product in products_price_map){
   a.push(products_price_map[product]);
   products_array.push(a);
 }
-console.log(products_array);
+//console.log(products_array);
 //
 // var sql1 = "INSERT INTO products (description, price) VALUES ?";
 //
@@ -53,6 +53,67 @@ console.log(products_array);
 //     if (err) throw err;
 //     connection.end();
 // });
+var products_quantity_map = require('./products_quantity_map_overall');
 
-var products_quantity_map = require('./products_quantity_map');
-console.log(products_quantity_map(file1));
+var array = products_quantity_map(file1,file2,file3,file4);
+var sales_array =[];
+
+for(i = 0; i < array.length; i++){
+  var data = array[i].split(" ");
+  var productName = "";
+  var numbers = [];
+  var a =[];
+
+  for(j=0; j < data.length; j++){
+    if(!isNaN(data[j]) && !isNaN(data[j+1]) ) {
+    for(k=0;k < j; k++)  {
+        productName += data[k]+" ";
+    }
+
+    numbers.push(data[j]);
+    numbers.push(data[j+1]);
+    }
+
+
+
+    }
+
+    a.push(productName.trim());
+    a.push(numbers[0]);
+    a.push(numbers[1]);
+    sales_array.push(a);
+  }
+
+
+
+// console.log(sales_array);
+
+// var sql2 = "INSERT INTO sales (description, quantity, week) VALUES ?";
+//
+// connection.query(sql2, [sales_array], function(err) {
+//     if (err) throw err;
+//     connection.end();
+// });
+var products_cost_map = require('./products_cost_map1');
+var purchases = readTheFile('../data/purchases.csv');
+var arr =  products_cost_map(purchases);
+var purchases_array = [];
+console.log(arr);
+for(i=0; i < arr.length; i++){
+  var a=[];
+  var data = arr[i].split(";");
+
+  for(j=0; j < data.length; j++){
+  a.push(data[j]);
+}
+purchases_array.push(a);
+}
+
+// console.log(purchases_array);
+//
+// var sql3 = "INSERT INTO purchases (description, quantity, cost, total_cost, shop) VALUES ?";
+//
+// connection.query(sql3, [purchases_array], function(err) {
+//     if (err) throw err;
+//     connection.end();
+// });

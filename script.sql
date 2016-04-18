@@ -26,10 +26,10 @@ use nelisa;
 --     product_id int,
 --     foreign key (product_id) references products(id)
 -- );
- -- 
+ --
  -- ALTER TABLE sales DROP COLUMN price ;
  -- ALTER TABLE sales ADD quantity decimal(10);
- ALTER TABLE sales ADD week int;
+ -- ALTER TABLE sales ADD week int;
 
 
 -- create table purchases (
@@ -39,3 +39,9 @@ use nelisa;
 --     product_id int,
 --     foreign key (product_id) references products(id)
 -- );
+
+-- ALTER TABLE purchases DROP COLUMN price;
+-- ALTER TABLE purchases ADD quantity int;
+-- ALTER TABLE purchases ADD cost decimal(10,2);
+-- ALTER TABLE purchases ADD total_cost decimal(10,2);
+ALTER TABLE purchases ADD shop char(100);

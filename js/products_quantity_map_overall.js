@@ -1,4 +1,4 @@
-var quantity_map = function(file1, file2, file3, file4) {
+module.exports = function(file1, file2, file3, file4) {
 
   var n = 1,
     week = 0,
@@ -45,9 +45,9 @@ var quantity_map = function(file1, file2, file3, file4) {
   return array;
 
 }
-var readTheFile = require('./readTheFile');
-var file1 = readTheFile('../data/week1.csv'),
-    file2 = readTheFile('../data/week2.csv'),
-    file3 = readTheFile('../data/week3.csv'),
-    file4 = readTheFile('../data/week4.csv');
-console.log(quantity_map(file1,file2,file3,file4));
+// var readTheFile = require('./readTheFile');
+// var file1 = readTheFile('../data/week1.csv'),
+//     file2 = readTheFile('../data/week2.csv'),
+//     file3 = readTheFile('../data/week3.csv'),
+//     file4 = readTheFile('../data/week4.csv');
+// console.log(quantity_map(file1,file2,file3,file4));
