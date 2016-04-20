@@ -33,8 +33,8 @@ exports.add = function (req, res, next) {
 		if (err) return next(err);
 		var data = {
 			category_id : Number(req.body.category_id),
-      		description : req.body.description,
-			price : Number(req.body.price)
+      description : req.body.description,
+			amount : Number(req.body.amount)
   		};
 
 		connection.query('insert into sales set ?', data, function(err, results) {

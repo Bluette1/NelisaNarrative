@@ -58,7 +58,16 @@ use nelisa;
 -- ON p.description = pr.description
 -- SET p.product_id = pr.id;
 
-UPDATE sales AS s
-INNER JOIN products AS pr
-ON s.description = pr.description
-SET s.product_id = pr.id;
+-- UPDATE sales AS s
+-- INNER JOIN products AS pr
+-- ON s.description = pr.description
+-- SET s.product_id = pr.id;
+
+-- ALTER TABLE sales ADD price decimal(10,2);
+--
+-- UPDATE sales AS s
+-- INNER JOIN products AS pr
+-- ON s.description = pr.description
+-- SET s.price = pr.price;
+
+ALTER TABLE products DROP COLUMN price;
