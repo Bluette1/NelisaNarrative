@@ -6,15 +6,21 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		connection.query('SELECT * from purchases', [], function(err, results) {
+		// connection.query('SELECT * from purchases', [], function(err, results) {
+		connection.query(' SELECT p.id, p.quantity, p.cost, p.shop, pr.description from purchases AS p INNER JOIN products AS pr ON p.product_id = pr.id', [], function(err,results){
         	if (err) return next(err);
     		res.render( 'purchases', {
 					no_products : results.length === 0,
-					purchases : results,
+					purchases : results
     		});
       	});
 	});
 };
+
+//  SELECT * from products AS pr
+// INNER JOIN purchases AS p
+// ON p.product_id = pr.id
+
 
 exports.showAdd = function(req, res){
 	req.getConnection(function(err, connection){
@@ -76,7 +82,7 @@ exports.update = function(req, res, next){
 		total_cost: Number(req.body.quantity) * Number(req.body.cost),
 		shop: req.body.shop
 		};
-		
+
   	var id = req.params.id;
   	req.getConnection(function(err, connection){
 		if (err) return next(err);
