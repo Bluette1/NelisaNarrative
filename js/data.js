@@ -64,7 +64,7 @@ products_array.push(a);
 console.log(products_array);
 
 
-var sql1 = "INSERT INTO products (description, price,category) VALUES ?";
+// var sql1 = "INSERT INTO products (description, price,category) VALUES ?";
 //
 // connection.query(sql1, [products_array], function(err) {
 //     if (err) throw err;
@@ -107,7 +107,7 @@ for(i = 0; i < array.length; i++){
 
 //console.log(sales_array);
 
-var sql2 = "INSERT INTO sales (description, quantity, week) VALUES ?";
+// var sql2 = "INSERT INTO sales (description, quantity, week) VALUES ?";
 //
 // connection.query(sql2, [sales_array], function(err) {
 //     if (err) throw err;

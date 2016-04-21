@@ -10,7 +10,7 @@ exports.show = function (req, res, next) {
         	if (err) return next(err);
     		res.render( 'purchases', {
 					no_products : results.length === 0,
-					products : results,
+					purchases : results,
     		});
       	});
 	});
@@ -19,10 +19,10 @@ exports.show = function (req, res, next) {
 exports.showAdd = function(req, res){
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		connection.query('SELECT * from categories', [], function(err, categories) {
+		connection.query('SELECT * from products', [], function(err, results) {
         	if (err) return next(err);
     		res.render( 'add_purchases', {
-					categories : categories,
+					products : results,
     		});
       	});
 	});
@@ -32,9 +32,11 @@ exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
 		var data = {
-			category_id : Number(req.body.category_id),
-      		description : req.body.description,
-			price : Number(req.body.price)
+			product_id : Number(req.body.product_id),
+			quantity: Number(req.body.quantity),
+			cost: Number(req.body.cost),
+			total_cost: Number(req.body.quantity) * Number(req.body.cost),
+			shop: req.body.shop
   		};
 
 		connection.query('insert into purchases set ?', data, function(err, results) {
@@ -47,17 +49,17 @@ exports.add = function (req, res, next) {
 exports.get = function(req, res, next){
 	var id = req.params.id;
 	req.getConnection(function(err, connection){
-		connection.query('SELECT * FROM categories', [id], function(err, categories){
+		connection.query('SELECT * FROM products', [id], function(err, products){
 			if(err) return next(err);
 			connection.query('SELECT * FROM purchases WHERE id = ?', [id], function(err,purchases){
 				if(err) return next(err);
-				var purchase= purchase[0];
-				categories = categories.map(function(category){
-					category.selected = category.id === purchase.category_id ? "selected" : "";
-					return category;
+				var purchase= purchases[0];
+				products = products.map(function(product){
+					product.selected = product.id === purchase.product_id ? "selected" : "";
+					return product;
 				});
-				res.render('edit', {
-					categories : categories,
+				res.render('edit_purchase', {
+					products : products,
 					data : purchase
 				});
 			});
@@ -68,10 +70,13 @@ exports.get = function(req, res, next){
 exports.update = function(req, res, next){
 
 	var data = {
-		category_id : Number(req.body.category_id),
-		description : req.body.description,
-		price : Number(req.body.price)
-	};
+		product_id : Number(req.body.product_id),
+		quantity: Number(req.body.quantity),
+		cost: Number(req.body.cost),
+		total_cost: Number(req.body.quantity) * Number(req.body.cost),
+		shop: req.body.shop
+		};
+		
   	var id = req.params.id;
   	req.getConnection(function(err, connection){
 		if (err) return next(err);

@@ -2,24 +2,29 @@
 
 <form action="/sales/add" method="POST">
 	<div class="">
-		<label for="">Category</label>
+		<label for="">Product</label>
 
-		<select class="" name="category_id">
-			{{#categories}}
+		<select class="" name="product_id">
+			{{#products}}
 				<option value="{{id}}">{{description}}</option>
-			{{/categories}}
+			{{/products}}
 		</select>
 	</div>
 
-	<div>
+	<!-- <div>
 		<label for="">Description</label>
 		<input type="text" name="description" value="{{description}}">
+	</div> -->
+
+	<div>
+		<label for="">Quantity</label>
+		<input type="number" step="any" name="quantity" value="{{quantity}}">
 	</div>
 
 	<div>
-		<label for="">Amount</label>
-		<input type="number" step="any" name="amount" value="{{amount}}">
+		<label for="">Week</label>
+		<input type="number" step="any" name="week" value="{{week}}">
 	</div>
-
+	
 	<input type="submit">
 </form>

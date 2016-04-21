@@ -18,7 +18,7 @@ var dbOptions = {
       user: 'bluette',
       password: 'password',
       port: 3306,
-      database: 'nelisa_database'
+      database: 'nelisa'
 };
 
 //setup template handlebars as the template engine
@@ -55,7 +55,7 @@ app.get('/sales/edit/:id', sales.get);
 app.post('/sales/update/:id', sales.update);
 app.post('/sales/add', sales.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
-app.get('/sales/delete/:id', categories.delete);
+app.get('/sales/delete/:id', sales.delete);
 
 app.get('/', products.show);
 app.get('/products', products.show);

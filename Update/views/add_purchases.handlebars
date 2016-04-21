@@ -2,23 +2,33 @@
 
 <form action="/purchases/add" method="POST">
 	<div class="">
-		<label for="">Category</label>
+		<label for="">Product</label>
 
-		<select class="" name="category_id">
-			{{#categories}}
+		<select class="" name="product_id">
+			{{#products}}
 				<option value="{{id}}">{{description}}</option>
-			{{/categories}}
+			{{/products}}
 		</select>
 	</div>
 
-	<div>
+	<!-- <div>
 		<label for="">Description</label>
 		<input type="text" name="description" value="{{description}}">
+	</div> -->
+
+	<div>
+		<label for="">Quantity</label>
+		<input type="number" step="any" name="quantity" value="{{quantity}}">
 	</div>
 
 	<div>
-		<label for="">Amount</label>
-		<input type="number" step="any" name="price" value="{{price}}">
+		<label for="">Cost</label>
+		<input type="number" step="any" name="cost" value="{{cost}}">
+	</div>
+
+	<div>
+		<label for="">Shop</label>
+		<input type="text" step="any" name="shop" value="{{shop}}">
 	</div>
 
 	<input type="submit">

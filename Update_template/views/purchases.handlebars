@@ -1,0 +1,11 @@
+<h1>Purchases</h1>
+<a href="/purchases/add">Add</a>
+{{#purchases}}
+  <h2>{{description}}</h2>
+  <a href="/purchases/edit/{{id}}">Edit</a>
+  <a href="/purchases/delete/{{id}}">Delete</a>
+{{/purchases}}
+
+{{#no_products}}
+  <p>No products available yet. Add some above.</p>
+{{/no_products}}
