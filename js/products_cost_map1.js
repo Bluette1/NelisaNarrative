@@ -21,7 +21,7 @@ module.exports = function(file) {
 
         var cost1 = (factors[k + 2].replace(",", ".")).split("R");
 
-        data += cost1[1]  + ";"+factors[0];
+        data += cost1[1]  + ";"+factors[0] + ";" + factors[1];
 
 
         array.push(data);

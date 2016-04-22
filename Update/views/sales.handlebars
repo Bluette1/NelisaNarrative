@@ -1,10 +1,26 @@
 <h1>Sales</h1>
 <a href="/sales/add">Add</a>
-{{#sales}}
-  <h2>{{description}}</h2>
-  <a href="/sales/edit/{{id}}">Edit</a>
-  <a href="/sales/delete/{{id}}">Delete</a>
-{{/sales}}
+<table>
+  <tr>
+  <th>Product</th>
+  <th>Quantity</th>
+  <th>Week</th>
+  </tr>
+
+
+    {{#sales}}
+    <tr>
+      <td>{{description}}</td>
+      <td>{{quantity}}</td>
+      <td>{{week}}</td>
+      <td><a href="/sales/edit/{{id}}">Edit</a></td>
+      <td><a href="/sales/delete/{{id}}">Delete</a></td>
+    </tr>
+    {{/sales}}
+
+
+</table>
+
 
 {{#no_products}}
   <p>No products available yet. Add some above.</p>

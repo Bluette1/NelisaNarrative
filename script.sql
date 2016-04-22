@@ -39,25 +39,26 @@ use nelisa;
 --     product_id int,
 --     foreign key (product_id) references products(id)
 -- );
---
+
 -- ALTER TABLE purchases DROP COLUMN price;
 -- ALTER TABLE purchases ADD quantity int;
 -- ALTER TABLE purchases ADD cost decimal(10,2);
 -- ALTER TABLE purchases ADD total_cost decimal(10,2);
 -- ALTER TABLE purchases ADD shop char(100);
--- ALTER TABLE products ADD category char(100);
+-- ALTER TABLE purchases ADD date char(100);
+ALTER TABLE products DROP COLUMN category;
 
 
 -- UPDATE products AS p
 -- INNER JOIN categories AS c
 -- ON p.category = c.description
 -- SET p.category_id = c.id;
---
---
--- UPDATE purchases AS p
--- INNER JOIN products AS pr
--- ON p.description = pr.description
--- SET p.product_id = pr.id;
+-- --
+-- --
+UPDATE purchases AS p
+INNER JOIN products AS pr
+ON p.description = pr.description
+SET p.product_id = pr.id;
 --
 -- UPDATE sales AS s
 -- INNER JOIN products AS pr
@@ -66,4 +67,4 @@ use nelisa;
 
 -- ALTER TABLE products DROP COLUMN category;
 ALTER TABLE purchases DROP COLUMN description;
-ALTER TABLE sales DROP COLUMN description;
+-- ALTER TABLE sales DROP COLUMN description;

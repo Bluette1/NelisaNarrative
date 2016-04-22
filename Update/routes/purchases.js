@@ -7,7 +7,7 @@ exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
 		// connection.query('SELECT * from purchases', [], function(err, results) {
-		connection.query(' SELECT p.id, p.quantity, p.cost, p.shop, pr.description from purchases AS p INNER JOIN products AS pr ON p.product_id = pr.id', [], function(err,results){
+		connection.query(' SELECT p.id, p.quantity, p.cost, p.shop, p.date, pr.description from purchases AS p INNER JOIN products AS pr ON p.product_id = pr.id', [], function(err,results){
         	if (err) return next(err);
     		res.render( 'purchases', {
 					no_products : results.length === 0,
@@ -42,7 +42,8 @@ exports.add = function (req, res, next) {
 			quantity: Number(req.body.quantity),
 			cost: Number(req.body.cost),
 			total_cost: Number(req.body.quantity) * Number(req.body.cost),
-			shop: req.body.shop
+			shop: req.body.shop,
+			date: req.body.date
   		};
 
 		connection.query('insert into purchases set ?', data, function(err, results) {
@@ -80,7 +81,8 @@ exports.update = function(req, res, next){
 		quantity: Number(req.body.quantity),
 		cost: Number(req.body.cost),
 		total_cost: Number(req.body.quantity) * Number(req.body.cost),
-		shop: req.body.shop
+		shop: req.body.shop,
+		date: req.body.date
 		};
 
   	var id = req.params.id;

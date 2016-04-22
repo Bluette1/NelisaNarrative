@@ -131,7 +131,7 @@ purchases_array.push(a);
 
 //console.log(purchases_array);
 
-var sql3 = "INSERT INTO purchases (description, quantity, cost, total_cost, shop) VALUES ?";
+var sql3 = "INSERT INTO purchases (description, quantity, cost, total_cost, shop, date) VALUES ?";
 //
 connection.query(sql3, [purchases_array], function(err) {
     if (err) throw err;

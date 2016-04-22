@@ -6,7 +6,7 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		connection.query('SELECT * from sales', [], function(err, results) {
+		connection.query('SELECT s.id, s.quantity, s.week, pr.description from sales AS s INNER JOIN products AS pr ON s.product_id = pr.id', [], function(err, results) {
         	if (err) return next(err);
     		res.render( 'sales', {
 					no_products : results.length === 0,
