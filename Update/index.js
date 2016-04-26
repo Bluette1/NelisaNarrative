@@ -8,7 +8,8 @@ var express = require('express'),
     categories = require('./routes/categories'),
     products = require('./routes/products'),
     sales = require('./routes/sales'),
-    purchases = require('./routes/purchases');
+    purchases = require('./routes/purchases'),
+    summary = require('./routes/summary');
 
 
 var app = express();
@@ -74,6 +75,9 @@ app.post('/purchases/update/:id', purchases.update);
 app.post('/purchases/add', purchases.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/purchases/delete/:id', purchases.delete);
+
+app.get('/summary', summary.show);
+app.post("/summary/view", summary.showSummary);
 
 app.use(errorHandler);
 

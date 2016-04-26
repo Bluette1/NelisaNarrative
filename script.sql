@@ -19,17 +19,19 @@ use nelisa;
 -- );
 --
 --
--- create table sales (
---     id int primary key auto_increment,
---     description char(100) not null,
---     price decimal(10,2),
---     product_id int,
---     foreign key (product_id) references products(id)
--- );
---
---  ALTER TABLE sales DROP COLUMN price ;
---  ALTER TABLE sales ADD quantity decimal(10);
---  ALTER TABLE sales ADD week int;
+create table sales (
+    id int primary key auto_increment,
+    description char(100) not null,
+    price decimal(10,2),
+    product_id int,
+    foreign key (product_id) references products(id)
+);
+
+ ALTER TABLE sales DROP COLUMN price ;
+ ALTER TABLE sales ADD quantity decimal(10);
+ ALTER TABLE sales ADD week int;
+ ALTER TABLE sales ADD date char(100);
+ ALTER TABLE sales ADD day char(100) not null;
 --
 --
 -- create table purchases (
@@ -46,7 +48,7 @@ use nelisa;
 -- ALTER TABLE purchases ADD total_cost decimal(10,2);
 -- ALTER TABLE purchases ADD shop char(100);
 -- ALTER TABLE purchases ADD date char(100);
-ALTER TABLE products DROP COLUMN category;
+-- ALTER TABLE products DROP COLUMN category;
 
 
 -- UPDATE products AS p
@@ -55,16 +57,16 @@ ALTER TABLE products DROP COLUMN category;
 -- SET p.category_id = c.id;
 -- --
 -- --
-UPDATE purchases AS p
-INNER JOIN products AS pr
-ON p.description = pr.description
-SET p.product_id = pr.id;
---
--- UPDATE sales AS s
+-- UPDATE purchases AS p
 -- INNER JOIN products AS pr
--- ON s.description = pr.description
--- SET s.product_id = pr.id;
+-- ON p.description = pr.description
+-- SET p.product_id = pr.id;
+--
+UPDATE sales AS s
+INNER JOIN products AS pr
+ON s.description = pr.description
+SET s.product_id = pr.id;
 
 -- ALTER TABLE products DROP COLUMN category;
-ALTER TABLE purchases DROP COLUMN description;
--- ALTER TABLE sales DROP COLUMN description;
+-- ALTER TABLE purchases DROP COLUMN description;
+ALTER TABLE sales DROP COLUMN description;

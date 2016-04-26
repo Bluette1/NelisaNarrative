@@ -78,41 +78,35 @@ var array = products_quantity_map(file1,file2,file3,file4);
 var sales_array =[];
 
 for(i = 0; i < array.length; i++){
-  var data = array[i].split(" ");
-  var productName = "";
-  var numbers = [];
+  var data = array[i].split(";");
+  // var productName = "";
+  // var numbers = [];
   var a =[];
 
   for(j=0; j < data.length; j++){
-    if(!isNaN(data[j]) && !isNaN(data[j+1]) ) {
-    for(k=0;k < j; k++)  {
-        productName += data[k]+" ";
+   a.push(data[j]);
     }
 
-    numbers.push(data[j]);
-    numbers.push(data[j+1]);
-    }
+    // numbers.push(data[j]);
+    // numbers.push(data[j+1]);
 
 
-
-    }
-
-    a.push(productName.trim());
-    a.push(numbers[0]);
-    a.push(numbers[1]);
+    // a.push(productName.trim());
+    // a.push(numbers[0]);
+    // a.push(numbers[1]);
     sales_array.push(a);
   }
 
 
 
-//console.log(sales_array);
+console.log(sales_array);
 
-// var sql2 = "INSERT INTO sales (description, quantity, week) VALUES ?";
-//
-// connection.query(sql2, [sales_array], function(err) {
-//     if (err) throw err;
-//     connection.end();
-// });
+var sql2 = "INSERT INTO sales (description, quantity, week, date,day) VALUES ?";
+
+connection.query(sql2, [sales_array], function(err) {
+    if (err) throw err;
+    connection.end();
+});
 
 var products_cost_map = require('./products_cost_map1');
 var purchases = readTheFile('../data/purchases.csv');
@@ -131,9 +125,9 @@ purchases_array.push(a);
 
 //console.log(purchases_array);
 
-var sql3 = "INSERT INTO purchases (description, quantity, cost, total_cost, shop, date) VALUES ?";
-//
-connection.query(sql3, [purchases_array], function(err) {
-    if (err) throw err;
-    connection.end();
-});
+// var sql3 = "INSERT INTO purchases (description, quantity, cost, total_cost, shop, date) VALUES ?";
+// //
+// connection.query(sql3, [purchases_array], function(err) {
+//     if (err) throw err;
+//     connection.end();
+// });

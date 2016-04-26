@@ -7,18 +7,19 @@ module.exports = function(file1, file2, file3, file4) {
 
   while (n < 5) {
     var file = [];
+    week =n;
     if (n === 1) {
       file = file1;
-      week = 1;
+      // week = n;
     } else if (n === 2) {
       file = file2;
-      week = 2;
+      // week = n;
     } else if (n === 3) {
       file = file3;
-      week = 3;
+      // week = n;
     } else if (n === 4) {
       file = file4;
-      week = 4;
+      // week = n;
     }
 
     for (i = 1; i < file.length; i++) {
@@ -28,7 +29,7 @@ module.exports = function(file1, file2, file3, file4) {
         if (!(isNaN(factors[j]))) {
           var data ="";
           //var a = [];
-          data += factors[j-1]+" "+ factors[j] + " " + week;
+          data += factors[j-1]+";"+ factors[j] + ";" + week+";"+factors[j-2]+";"+ factors[j-3];
           //a.push(Number(factors[j]));
           array.push(data);
           //productsMap[factors[j - 1]] = a;

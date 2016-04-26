@@ -6,7 +6,7 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		connection.query('SELECT s.id, s.quantity, s.week, pr.description from sales AS s INNER JOIN products AS pr ON s.product_id = pr.id', [], function(err, results) {
+		connection.query('SELECT s.id, s.quantity, s.week, s.date, s.day, pr.description from sales AS s INNER JOIN products AS pr ON s.product_id = pr.id ORDER BY s.week', [], function(err, results) {
         	if (err) return next(err);
     		res.render( 'sales', {
 					no_products : results.length === 0,
@@ -36,7 +36,11 @@ exports.add = function (req, res, next) {
 
 			quantity : Number(req.body.quantity),
 
-			week : Number(req.body.week)
+			week : Number(req.body.week),
+
+			date: req.body.date,
+
+			day: req.body.day
   		};
 
 		connection.query('insert into sales set ?', data, function(err, results) {
@@ -74,7 +78,11 @@ exports.update = function(req, res, next){
 
 		quantity : Number(req.body.quantity),
 
-		week : Number(req.body.week)
+		week : Number(req.body.week),
+
+		date: req.body.date,
+
+		day: req.body.day
 		};
 
   	var id = req.params.id;
@@ -82,7 +90,7 @@ exports.update = function(req, res, next){
 		if (err) return next(err);
 		connection.query('UPDATE sales SET ? WHERE id = ?', [data, id], function(err, rows){
 			if (err) return next(err);
-      		res.redirect('/sales');
+      res.redirect('/sales');
 		});
     });
 };
