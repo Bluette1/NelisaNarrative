@@ -82,3 +82,12 @@ input[type=submit] {
 .nav a:hover {
 	background-color: #4e5e56;
 }
+ th, td {
+    border: 1px solid black;
+
+}
+
+table{
+	padding-top: 25px;
+
+}

@@ -17,17 +17,33 @@ exports.showSummary = function(req,res,next){
     	if (err) return next(err);
       var week = req.body.week;
 
-        connection.query('SELECT product_id, SUM(quantity) total FROM sales WHERE week = ? GROUP BY product_id HAVING total = MAX(SUM(total))', [week], function(err, data){
+        connection.query('SELECT week, p.description, product_id, COUNT( * ) , SUM( quantity ) AS summed_q FROM  sales INNER JOIN products AS p ON p.id = sales.product_id GROUP BY product_id, week HAVING week =? ORDER BY summed_q DESC LIMIT 1', [week], function(err, mostPopularProduct){
             if (err) return next(err);
-            // connection.query(' SELECT  set ? AS s INNER JOIN products AS p ON s.product_id = p.id GROUP by product_id ', [data], function(err, results){
-            //   if (err) return next(err);
-              res.render('view_summary', {
-                results: data,
-        } );
 
 
-        // });
-//SELECT p.description, SUM(s.quantity) total FROM sales AS s INNER JOIN products AS p ON s.product_id = p.id GROUP by product_id HAVING week = ?
+				connection.query('SELECT week, p.description, product_id, COUNT( * ) , SUM( quantity ) AS summed_q FROM  sales INNER JOIN products AS p ON p.id = sales.product_id GROUP BY product_id, week HAVING week =? ORDER BY summed_q ASC LIMIT 1', [week], function(err, leastPopularProduct){
+						if (err) return next(err);
+        connection.query('SELECT week, c.description, p.category_id, COUNT( * ) , SUM( quantity ) AS summed_q FROM  sales INNER JOIN products AS p ON p.id = sales.product_id INNER JOIN categories AS c ON p.category_id = c.id GROUP BY p.category_id, week HAVING week =? ORDER BY summed_q DESC LIMIT 1 ', [week], function(err,mostPopularCategory){
+            if (err) return next(err);
+				connection.query('SELECT week, c.description, p.category_id, COUNT( * ) , SUM( quantity ) AS summed_q FROM  sales INNER JOIN products AS p ON p.id = sales.product_id INNER JOIN categories AS c ON p.category_id = c.id GROUP BY p.category_id, week HAVING week =? ORDER BY summed_q ASC LIMIT 1 ', [week], function(err,leastPopularCategory){
+		        if (err) return next(err);
+				connection.query('SELECT week, pr.description, s.product_id, p.shop, SUM( s.quantity * pr.price - s.quantity * p.cost ) AS summed_q FROM  sales AS s INNER JOIN products AS pr ON pr.id = s.product_id INNER JOIN purchases AS p ON p.product_id = pr.id GROUP BY product_id, week, p.shop HAVING week =? ORDER BY summed_q DESC LIMIT 1',[week], function(err, mostProfitableProduct){
+	          if (err) return next(err);
+        connection.query('SELECT week, c.description, c.id, SUM( s.quantity * pr.price - s.quantity * p.cost ) AS summed_q FROM  `sales` AS s INNER JOIN products AS pr ON pr.id = s.product_id INNER JOIN purchases AS p ON p.product_id = pr.id INNER JOIN categories AS c ON pr.id = c.id GROUP BY c.id, week HAVING week =? ORDER BY summed_q DESC LIMIT 1', [week], function(err, mostProfitableCategory){
+	          if (err) return next(err);
+							res.render('view_summary', {
+							mostPopularProduct: mostPopularProduct,
+							leastPopularProduct: leastPopularProduct,
+							mostPopularCategory: mostPopularCategory,
+							leastPopularCategory:leastPopularCategory,
+							mostProfitableProduct: mostProfitableProduct,
+							mostProfitableCategory: mostProfitableCategory
+				} );
+			});
+			});
+			});
+			});
+        });
       });
   });
 };
