@@ -1,0 +1,45 @@
+<table>
+  <tr>
+
+    <th>Most Popular Product</th>
+    <th>Least Popular Product</th>
+    <th>Most Popular Category</th>
+    <th>Least Popular Category</th>
+    <th>Most Profitable Product</th>
+    <th>Most Profitable Category</th>
+    <!-- <th>Most Popular Category</th>
+    <th>Most Profitable Product</th>
+    <th>Most Profitable Category</th>  -->
+
+  </tr>
+
+  <tr>
+{{#mostPopularProduct}}
+
+    <td>{{description}}</td>
+    <!-- <td>{{most_popular_product}}</td>
+    <td>{{least_popular_category}}</td>
+    <td>{{most_popular_category}}</td>
+    <td>{{most_profitable_product}}</td>
+    <td>{{most_profitable_category}}</td> -->
+
+{{/mostPopularProduct}}
+
+{{#leastPopularProduct}}
+<td>{{description}}</td>
+ {{/leastPopularProduct}}
+ {{#mostPopularCategory}}
+ <td>{{description}}</td>
+ {{/mostPopularCategory}}
+ {{#leastPopularCategory}}
+ <td>{{description}}</td>
+ {{/leastPopularCategory}}
+ {{#mostProfitableProduct}}
+<td>{{description}} from {{shop}}</td>
+ {{/mostProfitableProduct}}
+{{#mostProfitableCategory}}
+<td>{{description}}</td>
+{{/mostProfitableCategory}}
+</tr>
+
+</table>

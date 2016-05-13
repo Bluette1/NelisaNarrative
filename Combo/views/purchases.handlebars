@@ -1,0 +1,35 @@
+<h1>Purchases</h1>
+<a href="/purchases/add">Add</a>
+
+<table style="padding: 3px;">
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+    <th>Shop</th>
+    <th>Date</th>
+
+  </tr>
+
+  {{#purchases}}
+
+
+    <tr>
+      <td style="padding: 10px;">{{description}}</td>
+      <td>{{quantity}}</td>
+      <td>{{cost}}</td>
+      <td style="padding: 10px;">{{shop}}</td>
+      <td>{{date}}</td>
+      <td><a href="/purchases/edit/{{id}}">Edit</a></td>
+      <td style="padding: 3px;"><a href="/purchases/delete/{{id}}">Delete</a></td>
+    </tr>
+
+
+
+  {{/purchases}}
+</table>
+
+
+{{#no_products}}
+  <p>No products available yet. Add some above.</p>
+{{/no_products}}
