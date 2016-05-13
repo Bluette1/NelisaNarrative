@@ -1,0 +1,15 @@
+<h1>View summary</h1>
+
+<form action="/summary/view" method="POST">
+	<div class="">
+		<label for="">Week</label>
+
+		<select class="" name="week">
+			{{#sales}}
+				<option value="{{week}}">{{week}}</option>
+			{{/sales}}
+		</select>
+	</div>
+
+	<input type="submit">
+</form>

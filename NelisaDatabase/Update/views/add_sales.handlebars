@@ -1,0 +1,38 @@
+<h1>Add sale</h1>
+
+<form action="/sales/add" method="POST">
+	<div class="">
+		<label for="">Product</label>
+
+		<select class="" name="product_id">
+			{{#products}}
+				<option value="{{id}}">{{description}}</option>
+			{{/products}}
+		</select>
+	</div>
+
+	<!-- <div>
+		<label for="">Description</label>
+		<input type="text" name="description" value="{{description}}">
+	</div> -->
+
+	<div>
+		<label for="">Quantity</label>
+		<input type="number" step="any" name="quantity" value="{{quantity}}">
+	</div>
+
+	<div>
+		<label for="">Week</label>
+		<input type="number" step="any" name="week" value="{{week}}">
+	</div>
+	<div>
+		<label for="">Date</label>
+		<input type="text" step="any" name="date" value="{{date}}">
+	</div>
+	<div>
+		<label for="">Day</label>
+		<input type="text" step="any" name="day" value="{{day}}">
+	</div>
+
+	<input type="submit">
+</form>
