@@ -32,6 +32,7 @@ exports.showSummary = function(req,res,next){
         connection.query('SELECT week, c.description, c.id, SUM( s.quantity * pr.price - s.quantity * p.cost ) AS summed_q FROM  `sales` AS s INNER JOIN products AS pr ON pr.id = s.product_id INNER JOIN purchases AS p ON p.product_id = pr.id INNER JOIN categories AS c ON pr.id = c.id GROUP BY c.id, week HAVING week =? ORDER BY summed_q DESC LIMIT 1', [week], function(err, mostProfitableCategory){
 	          if (err) return next(err);
 							res.render('view_summary', {
+							week: week,
 							mostPopularProduct: mostPopularProduct,
 							leastPopularProduct: leastPopularProduct,
 							mostPopularCategory: mostPopularCategory,
