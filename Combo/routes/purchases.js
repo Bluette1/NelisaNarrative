@@ -7,7 +7,7 @@ exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
 		// connection.query('SELECT * from purchases', [], function(err, results) {
-		connection.query(' SELECT p.id, p.quantity, p.cost, p.shop, p.date, pr.description from purchases AS p INNER JOIN products AS pr ON p.product_id = pr.id', [], function(err,results){
+		connection.query(' SELECT p.id, p.quantity, p.cost, p.shop, DATE_FORMAT (p.date_of_purchase , "%W %d %b %y") date_of_purchase, pr.description from purchases AS p INNER JOIN products AS pr ON p.product_id = pr.id ORDER BY EXTRACT(MONTH FROM date_of_purchase), EXTRACT(DAY FROM date_of_purchase)' , [], function(err,results){
         	if (err) return next(err);
     		res.render( 'purchases', {
 					no_products : results.length === 0,

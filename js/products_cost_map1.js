@@ -21,7 +21,27 @@ module.exports = function(file) {
 
         var cost1 = (factors[k + 2].replace(",", ".")).split("R");
 
-        data += cost1[1]  + ";"+factors[0] + ";" + factors[1];
+        var date= factors[1].split('-');
+        var month = date[1];
+        switch (month) {
+          case "Jan": month ="01";
+          break;
+          case "Feb": month ="02";
+          break;
+          case "Mar": month ="03";
+
+            break;
+          default:
+
+        }
+        var day = date[0];
+        if(Number(day) < 10){
+          day ="0"+day;
+        }
+        var theDate = "2016-"+month+"-"+day;
+
+
+        data += cost1[1]  + ";"+factors[0] + ";" + theDate;
 
 
         array.push(data);

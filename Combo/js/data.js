@@ -15,7 +15,7 @@ var products_category_map = require('./products_category_map');
 var map = products_category_map(file);
 var category_array =[];
 for (category in map){
-  var a = [];
+  var a =[];
   a.push(category);
   category_array.push(a);
 }
@@ -23,10 +23,12 @@ for (category in map){
 //console.log(category_array);
 var sql = "INSERT INTO categories (description) VALUES ?";
 
-connection.query(sql, [category_array], function(err) {
-    if (err) throw err;
-    connection.end();
-});
+
+// connection.query(sql, [category_array], function(err) {
+//     if (err) throw err;
+//     connection.end();
+// });
+
 
 var readTheFile = require('./readTheFile');
 var file1 = readTheFile('../data/week1.csv'),
@@ -60,11 +62,12 @@ products_array.push(a);
 
 
 var sql1 = "INSERT INTO products (description, price,category) VALUES ?";
-
+//
 // connection.query(sql1, [products_array], function(err) {
 //     if (err) throw err;
 //     connection.end();
 // });
+
 
 var products_quantity_map = require('./products_quantity_map_overall');
 
@@ -73,26 +76,29 @@ var sales_array =[];
 
 for(i = 0; i < array.length; i++){
   var data = array[i].split(";");
-
+  // var productName = "";
+  // var numbers = [];
   var a =[];
 
   for(j=0; j < data.length; j++){
    a.push(data[j]);
     }
 
+
     sales_array.push(a);
   }
 
 
 
-//console.log(sales_array);
+console.log(sales_array);
 
-// var sql2 = "INSERT INTO sales (description, quantity, week, date,day) VALUES ?";
-//
-// connection.query(sql2, [sales_array], function(err) {
-//     if (err) throw err;
-//     connection.end();
-// });
+var sql2 = "INSERT INTO sales (description, quantity, week, date_of_sale) VALUES ?";
+
+connection.query(sql2, [sales_array], function(err) {
+    if (err) throw err;
+    connection.end();
+});
+
 
 var products_cost_map = require('./products_cost_map1');
 var purchases = readTheFile('../data/purchases.csv');
@@ -109,7 +115,7 @@ for(i=0; i < arr.length; i++){
 purchases_array.push(a);
 }
 
-//console.log(purchases_array);
+console.log(purchases_array);
 
 var sql3 = "INSERT INTO purchases (description, quantity, cost, total_cost, shop, date) VALUES ?";
 //

@@ -29,7 +29,26 @@ module.exports = function(file1, file2, file3, file4) {
         if (!(isNaN(factors[j]))) {
           var data ="";
           //var a = [];
-          data += factors[j-1]+";"+ factors[j] + ";" + week+";"+factors[j-2]+";"+ factors[j-3];
+          var date= factors[j-2].split('-');
+          var month = date[1];
+          switch (month) {
+            case "Jan": month ="01";
+            break;
+            case "Feb": month ="02";
+            break;
+            case "Mar": month ="03";
+
+              break;
+            default:
+
+          }
+          var day = date[0];
+          if(Number(day) < 10){
+            day ="0"+day;
+          }
+          var theDate = "2016-"+month+"-"+day;
+
+          data += factors[j-1]+";"+ factors[j] + ";" + week+";"+theDate;
           //a.push(Number(factors[j]));
           array.push(data);
           //productsMap[factors[j - 1]] = a;

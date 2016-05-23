@@ -23,16 +23,15 @@ use nelisa;
 -- create table sales (
 --     id int primary key auto_increment,
 --     description char(100) not null,
---     price decimal(10,2),
+--     quantity decimal(10),
+--     week int,
 --     product_id int,
 --     foreign key (product_id) references products(id)
 -- );
+-- --
 --
---  ALTER TABLE sales DROP COLUMN price ;
---  ALTER TABLE sales ADD quantity decimal(10);
---  ALTER TABLE sales ADD week int;
---  ALTER TABLE sales ADD date char(100);
---  ALTER TABLE sales ADD day char(100) not null;
+-- ALTER TABLE sales ADD date_of_sale date;
+
 --
 --
 -- create table purchases (
@@ -42,7 +41,7 @@ use nelisa;
 --     cost decimal(10,2),
 --     total_cost decimal(10,2),
 --     shop char(100),
---     date char(100),
+--     date_of_purchase date,
 --     product_id int,
 --     foreign key (product_id) references products(id)
 -- );
@@ -56,10 +55,10 @@ use nelisa;
 -- SET p.category_id = c.id;
 --
 --
--- UPDATE purchases AS p
--- INNER JOIN products AS pr
--- ON p.description = pr.description
--- SET p.product_id = pr.id;
+UPDATE purchases AS p
+INNER JOIN products AS pr
+ON p.description = pr.description
+SET p.product_id = pr.id;
 --
 -- UPDATE sales AS s
 -- INNER JOIN products AS pr
@@ -67,7 +66,7 @@ use nelisa;
 -- SET s.product_id = pr.id;
 
 -- ALTER TABLE products DROP COLUMN category;
--- ALTER TABLE purchases DROP COLUMN description;
+ALTER TABLE purchases DROP COLUMN description;
 -- ALTER TABLE sales DROP COLUMN description;
 -- UPDATE sales SET date = REPLACE(date, '-', ' ');
 -- UPDATE purchases SET date = REPLACE(date, '-', ' ');
@@ -75,4 +74,3 @@ use nelisa;
 -- ALTER TABLE sales ALTER COLUMN date date ;
 -- ALTER TABLE sales CHANGE date Date date;
 -- ALTER TABLE sales CHANGE date Date date DATE_FORMAT('%d %b');
-UPDATE TABLE sales SET date = REPLACE(date, DATE_FORMAT('%d %b'));

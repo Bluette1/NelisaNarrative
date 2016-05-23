@@ -90,9 +90,9 @@ for(i = 0; i < array.length; i++){
 
 
 
-//console.log(sales_array);
+console.log(sales_array);
 
-var sql2 = "INSERT INTO sales (description, quantity, week, date,day) VALUES ?";
+var sql2 = "INSERT INTO sales (description, quantity, week, date_of_sale) VALUES ?";
 //
 // connection.query(sql2, [sales_array], function(err) {
 //     if (err) throw err;
@@ -117,8 +117,8 @@ purchases_array.push(a);
 
 console.log(purchases_array);
 
-var sql3 = "INSERT INTO purchases (description, quantity, cost, total_cost, shop, date) VALUES ?";
-//
+var sql3 = "INSERT INTO purchases (description, quantity, cost, total_cost, shop, date_of_purchase) VALUES ?";
+
 connection.query(sql3, [purchases_array], function(err) {
     if (err) throw err;
     connection.end();

@@ -6,7 +6,7 @@
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		connection.query('SELECT s.id, s.quantity, s.week, s.date, s.day, pr.description from sales AS s INNER JOIN products AS pr ON s.product_id = pr.id ORDER BY s.week', [], function(err, results) {
+		connection.query('SELECT s.id, s.quantity, s.week, DATE_FORMAT (s.date_of_sale , "%W %d %b %y") date_of_sale, pr.description from sales AS s INNER JOIN products AS pr ON s.product_id = pr.id ORDER BY EXTRACT(MONTH FROM date_of_sale), EXTRACT(DAY FROM date_of_sale)', [], function(err, results) {
         	if (err) return next(err);
     		res.render( 'sales', {
 					no_products : results.length === 0,
@@ -15,7 +15,7 @@ exports.show = function (req, res, next) {
       	});
 	});
 };
-
+//DATE_FORMAT (s.date_of_sale , "%W %d %b %y")
 exports.showAdd = function(req, res){
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
@@ -38,9 +38,9 @@ exports.add = function (req, res, next) {
 
 			week : Number(req.body.week),
 
-			date: req.body.date,
+			date_of_sale: req.body.date
 
-			day: req.body.day
+
   		};
 
 		connection.query('insert into sales set ?', data, function(err, results) {
@@ -80,9 +80,8 @@ exports.update = function(req, res, next){
 
 		week : Number(req.body.week),
 
-		date: req.body.date,
+		date_of_sale: req.body.date
 
-		day: req.body.day
 		};
 
   	var id = req.params.id;
