@@ -37,13 +37,27 @@ exports.showAdd = function(req, res){
 exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
+		var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+			dd='0'+dd
+	}
+
+	if(mm<10) {
+			mm='0'+mm
+	}
+
+	today = yyyy+'-'+mm+'-'+dd;
 		var data = {
 			product_id : Number(req.body.product_id),
 			quantity: Number(req.body.quantity),
 			cost: Number(req.body.cost),
 			total_cost: Number(req.body.quantity) * Number(req.body.cost),
 			shop: req.body.shop,
-			date: req.body.date
+			date_of_purchase: today
   		};
 
 		connection.query('insert into purchases set ?', data, function(err, results) {
@@ -82,7 +96,7 @@ exports.update = function(req, res, next){
 		cost: Number(req.body.cost),
 		total_cost: Number(req.body.quantity) * Number(req.body.cost),
 		shop: req.body.shop,
-		date: req.body.date
+		date_of_purchase: req.body.date
 		};
 
   	var id = req.params.id;

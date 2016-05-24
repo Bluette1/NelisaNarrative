@@ -31,6 +31,21 @@ exports.showAdd = function(req, res){
 exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
+	var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd='0'+dd
+}
+
+if(mm<10) {
+    mm='0'+mm
+}
+
+today = yyyy+'-'+mm+'-'+dd;
+
 		var data = {
 			product_id : Number(req.body.product_id),
 
@@ -38,7 +53,9 @@ exports.add = function (req, res, next) {
 
 			week : Number(req.body.week),
 
-			date_of_sale: req.body.date
+			date_of_sale: today
+
+			//date_of_sale: req.body.date
 
 
   		};
