@@ -111,6 +111,15 @@ exports.update = function(req, res, next){
     });
 };
 
+exports.confirm = function(req,res,next){
+	var id = req.params.id;
+	res.render('delete', {
+		id: id,
+		record: "sale",
+		route: "sales"
+	})
+};
+
 exports.delete = function(req, res, next){
 	var id = req.params.id;
 	req.getConnection(function(err, connection){

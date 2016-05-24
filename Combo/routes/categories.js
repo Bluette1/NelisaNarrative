@@ -41,7 +41,7 @@ exports.get = function(req, res, next){
 	req.getConnection(function(err, connection){
 		connection.query('SELECT * FROM categories WHERE id = ?', [id], function(err,rows){
 			if(err) return next(err);
-			res.render('edit_category',{page_title:"Edit Customers - Node.js", data : rows[0]});
+			res.render('edit_category',{data : rows[0]});
 		});
 	});
 };
@@ -57,6 +57,15 @@ exports.update = function(req, res, next){
     		});
 
     });
+};
+
+exports.confirm = function(req,res,next){
+	var id = req.params.id;
+	res.render('delete', {
+		id: id,
+		record: "category",
+		route: "categories"
+	})
 };
 
 exports.delete = function(req, res, next){
