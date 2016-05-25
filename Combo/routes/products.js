@@ -84,11 +84,18 @@ exports.update = function(req, res, next){
 
 exports.confirm = function(req,res,next){
 	var id = req.params.id;
-	res.render('delete', {
-		id: id,
-		record: "product",
-		route: "products"
-	})
+	req.getConnection(function(err, connection){
+		if(err) return next(err);
+		connection.query('SELECT pr.id, pr.description, pr.price, c.description AS category FROM products AS pr INNER JOIN categories AS c ON pr.category_id = c.id WHERE pr.id = ? ', [id], function(err, product){
+			if(err) return next(err);
+
+	res.render('delete_product', {
+		product: product
+
+
+	});
+	});
+	});
 };
 
 exports.delete = function(req, res, next){

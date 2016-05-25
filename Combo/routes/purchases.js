@@ -111,11 +111,14 @@ exports.update = function(req, res, next){
 
 exports.confirm = function(req,res,next){
 	var id = req.params.id;
-	res.render('delete', {
-		id: id,
-		record: "purchase",
-		route: "purchases"
+	req.getConnection(function(err, connection){
+		connection.query('SELECT p.id, pr.description, p.quantity, p.cost, p.shop, DATE_FORMAT(p.date_of_purchase, "%W %d %b %y" ) date_of_purchase FROM purchases AS p INNER JOIN products AS pr ON p.product_id = pr.id WHERE p.id = ?', [id], function(err, purchase){
+			if(err) return next(err);
+	res.render('delete_purchase', {
+		purchase: purchase
 	})
+});
+});
 };
 
 exports.delete = function(req, res, next){

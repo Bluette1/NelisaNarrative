@@ -61,11 +61,14 @@ exports.update = function(req, res, next){
 
 exports.confirm = function(req,res,next){
 	var id = req.params.id;
-	res.render('delete', {
-		id: id,
-		record: "category",
-		route: "categories"
-	})
+	req.getConnection(function(err, connection){
+		connection.query('SELECT * FROM categories WHERE id = ?', [id], function(err,rows){
+			if(err) return next(err);
+	    res.render('delete_category', {
+		category : rows[0]
+	});
+});
+});
 };
 
 exports.delete = function(req, res, next){

@@ -1,0 +1,28 @@
+
+
+<h1>Are you sure you want to delete this purchase?</h1>
+<table>
+  <tr>
+    <th>description</th>
+    <th>quantity</th>
+    <th>cost</th>
+    <th>shop</th>
+    <th>date_of_purchase</th>
+  </tr>
+  <tr>
+
+    {{#purchase}}
+    <td>{{description}}</td>
+    <td>{{quantity}}</td>
+    <td>{{cost}}</td>
+    <td>{{shop}}</td>
+    <td>{{date_of_purchase}}</td>
+    {{/purchase}}
+
+  </tr>
+</table>
+{{#purchase}}
+<a href="/purchases/delete/{{id}}">Delete</a>
+{{/purchase}}
+
+<a href="/purchases">Cancel</a>

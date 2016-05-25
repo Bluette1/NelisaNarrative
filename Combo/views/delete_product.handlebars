@@ -1,0 +1,24 @@
+
+
+<h1>Are you sure you want to delete this product?</h1>
+<table>
+  <tr>
+    <th>description</th>
+    <th>price</th>
+    <th>category</th>
+  </tr>
+  <tr>
+
+    {{#product}}
+    <td>{{description}}</td>
+    <td>{{price}}</td>
+    <td>{{category}}</td>
+    {{/product}}
+
+  </tr>
+</table>
+{{#product}}
+<a href="/products/delete/{{id}}">Delete</a>
+{{/product}}
+
+<a href="/products">Cancel</a>

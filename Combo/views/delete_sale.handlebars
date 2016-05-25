@@ -1,0 +1,26 @@
+
+
+<h1>Are you sure you want to delete this sale?</h1>
+<table>
+  <tr>
+    <th>description</th>
+    <th>quantity</th>
+    <th>week</th>
+    <th>date_of_sale</th>
+  </tr>
+  <tr>
+
+    {{#sale}}
+    <td>{{description}}</td>
+    <td>{{quantity}}</td>
+    <td>{{week}}</td>
+    <td>{{sale_date}}</td>
+    {{/sale}}
+
+  </tr>
+</table>
+{{#sale}}
+<a href="/sales/delete/{{id}}">Delete</a>
+{{/sale}}
+
+<a href="/sales">Cancel</a>
